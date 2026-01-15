@@ -1,5 +1,6 @@
 keys:
   - &nixos_operator__cheng age1v35c8pstlm756dj5dsyu0qf7em8vcj4hsxc7cl26n43cmrzgyfyq0zj66v
+  - &nixos_host__mochi age14lcrpxnt4wyswqppf9t4xvqymnacvckkhsq4hw8gwx2ztx64rass7a0nj2
   - &nixos_host__taco age14lcrpxnt4wyswqppf9t4xvqymnacvckkhsq4hw8gwx2ztx64rass7a0nj2
 
 creation_rules:
@@ -9,6 +10,13 @@ creation_rules:
       - age:
           - *nixos_operator__cheng
           - *nixos_host__taco
+
+  # Secrets of host `mochi`
+  - path_regex: secrets/nixos/mochi/[^/]+\.(yaml|json|ini|env)$
+    key_groups:
+      - age:
+          - *nixos_operator__cheng
+          - *nixos_host__mochi
 
   # Secrets of host `taco`
   - path_regex: secrets/nixos/taco/[^/]+\.(yaml|json|ini|env)$

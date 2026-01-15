@@ -34,7 +34,9 @@
 
         ./flake-modules/nixos/options/system.nix
 
+        ./flake-modules/nixos/hosts/mochi.nix
         ./flake-modules/nixos/hosts/taco.nix
+
         ./flake-modules/nixos/deploy.nix
       ];
 
