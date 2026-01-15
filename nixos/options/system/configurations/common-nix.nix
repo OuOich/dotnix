@@ -28,7 +28,7 @@ in
         ];
 
         trusted-users = lib.mkIf cfg.trustUsersInTrustedGroup (
-          dotnix.lib.utils.getUserNamesInGroup config "trusted"
+          dotnix.lib.utils.getUserNamesInGroup config config.users.groups.trusted.name
         );
 
         auto-optimise-store = lib.mkDefault true;

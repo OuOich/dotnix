@@ -3,7 +3,15 @@ keys:
   - &nixos_host__taco age14lcrpxnt4wyswqppf9t4xvqymnacvckkhsq4hw8gwx2ztx64rass7a0nj2
 
 creation_rules:
+  # Global NixOS host secrets
   - path_regex: secrets/nixos/[^/]+\.(yaml|json|ini|env)$
+    key_groups:
+      - age:
+          - *nixos_operator__cheng
+          - *nixos_host__taco
+
+  # Secrets of host `taco`
+  - path_regex: secrets/nixos/taco/[^/]+\.(yaml|json|ini|env)$
     key_groups:
       - age:
           - *nixos_operator__cheng

@@ -12,8 +12,8 @@ in
     users.groups.trusted = lib.mkDefault {
       gid = lib.mkDefault 997;
 
-      members = [
-        "root"
+      members = with config.users.users; [
+        root.name
       ];
     };
   };

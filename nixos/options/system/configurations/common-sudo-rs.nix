@@ -24,7 +24,7 @@ in
 
       extraRules = [
         (lib.mkIf cfg.trustedGroupNopasswd {
-          groups = [ "trusted" ];
+          groups = with config.users.groups; [ trusted.name ];
 
           commands = [
             {
