@@ -7,7 +7,7 @@ inputs.nixpkgs.lib.nixosSystem {
   };
 
   modules = [
-    ../../options/system
+    self.nixosOptions
 
     inputs.sops-nix.nixosModules.sops
 
