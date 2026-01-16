@@ -1,4 +1,5 @@
 {
+  self,
   dotnix,
   config,
   lib,
@@ -41,7 +42,7 @@ in
 
     hostSecretFile = lib.mkOption {
       type = lib.types.path;
-      default = ../../../../secrets/nixos/${config.networking.hostName}/default.yaml;
+      default = self + /secrets/nixos/${config.networking.hostName}/default.yaml;
       description = "Path to the host-specific secret file.";
     };
 
@@ -64,7 +65,7 @@ in
             options = {
               secretFile = lib.mkOption {
                 type = lib.types.path;
-                default = ../../../../secrets/nixos/default.yaml;
+                default = self + /secrets/nixos/default.yaml;
               };
               ed25519SecretKey = lib.mkOption {
                 type = lib.types.str;

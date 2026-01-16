@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+{ self, inputs, ... }:
 
 {
   flake = {
-    nixosConfigurations.mochi = import ../../../nixos/hosts/mochi/system.nix { inherit inputs self; };
+    nixosConfigurations.mochi = import (self + /nixos/hosts/mochi/system.nix) { inherit self inputs; };
   };
 }

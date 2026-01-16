@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+{ self, inputs, ... }:
 
 {
   flake = {
-    nixosConfigurations.taco = import ../../../nixos/hosts/taco/system.nix { inherit inputs self; };
+    nixosConfigurations.taco = import (self + /nixos/hosts/taco/system.nix) { inherit self inputs; };
   };
 }

@@ -1,8 +1,8 @@
-{ inputs, self, ... }:
+{ self, inputs, ... }:
 
 inputs.nixpkgs.lib.nixosSystem {
   specialArgs = {
-    inherit inputs;
+    inherit self inputs;
     inherit (self) dotnix;
   };
 

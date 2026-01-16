@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+{ self, inputs, ... }:
 
 {
   flake = {
-    deploy = import ../../nixos/deploy.nix { inherit inputs self; };
+    deploy = import (self + /nixos/deploy.nix) { inherit inputs self; };
   };
 }
