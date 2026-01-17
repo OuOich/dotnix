@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  self,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   users.users = {
@@ -25,4 +30,12 @@
       ];
     };
   };
+
+  home-manager.users =
+    let
+      byId = id: self + "/nixos/home/${id}/home.nix";
+    in
+    {
+      cheng = byId "cheng@mochi";
+    };
 }
