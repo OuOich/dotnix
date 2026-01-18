@@ -23,6 +23,8 @@ inputs.nixpkgs.lib.nixosSystem rec {
         extraSpecialArgs = specialArgs;
 
         sharedModules = [
+          self.homeOptions
+
           inputs.stylix.homeModules.stylix
         ];
 

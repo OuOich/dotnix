@@ -40,6 +40,7 @@
         ./flake-modules/dotnix.nix
 
         ./flake-modules/nixos/options/system.nix
+        ./flake-modules/nixos/options/home.nix
 
         ./flake-modules/nixos/hosts/mochi.nix
         ./flake-modules/nixos/hosts/taco.nix
