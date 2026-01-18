@@ -14,6 +14,7 @@ pkgs.mkShell {
     nil
     statix
     nixfmt-rfc-style
+    prettier
 
     sops
 
