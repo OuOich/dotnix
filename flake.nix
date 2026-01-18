@@ -37,6 +37,8 @@
 
         ./flake-modules/library.nix
 
+        ./flake-modules/dotnix.nix
+
         ./flake-modules/nixos/options/system.nix
 
         ./flake-modules/nixos/hosts/mochi.nix

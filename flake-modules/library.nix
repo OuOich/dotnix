@@ -1,9 +1,14 @@
-{ pkgs, lib, ... }:
-
 {
-  flake = rec {
-    library = import ../library { inherit pkgs lib; };
-
-    dotnix.lib = library;
+  flake = {
+    lib = import ../library;
   };
+
+  perSystem =
+    { pkgs, ... }:
+    {
+      legacyPackages.lib = import ../library {
+        inherit pkgs;
+        inherit (pkgs) lib;
+      };
+    };
 }

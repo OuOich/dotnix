@@ -1,9 +1,11 @@
 { self, inputs, ... }:
 
+let
+  inherit (self.legacyPackages.x86_64-linux) dotnix;
+in
 inputs.nixpkgs.lib.nixosSystem rec {
   specialArgs = {
-    inherit self inputs;
-    inherit (self) dotnix;
+    inherit self inputs dotnix;
   };
 
   modules = [
