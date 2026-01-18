@@ -6,10 +6,10 @@
 }:
 
 let
-  cfg = config.dotnix.configurations.commonNix;
+  cfg = config.dotnix.configurations.common-nix;
 in
 {
-  options.dotnix.configurations.commonNix = {
+  options.dotnix.configurations.common-nix = {
     enable = lib.mkEnableOption "Whether to enable the common Nix configuration.";
 
     trustUsersInTrustedGroup = lib.mkOption {

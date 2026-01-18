@@ -10,11 +10,11 @@
     ./packages.nix
   ];
 
-  dotnix.templates.generalDesktop.enable = true;
+  dotnix.templates.general-desktop.enable = true;
 
   dotnix.configurations = {
-    qemuGuest.enable = true;
-    commonSops.enable = true;
+    qemu-guest.enable = true;
+    common-sops.enable = true;
   };
 
   time.timeZone = "Asia/Shanghai";

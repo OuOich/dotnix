@@ -1,10 +1,10 @@
 { config, lib, ... }:
 
 let
-  cfg = config.dotnix.configurations.trustedGroup;
+  cfg = config.dotnix.configurations.trusted-group;
 in
 {
-  options.dotnix.configurations.trustedGroup = {
+  options.dotnix.configurations.trusted-group = {
     enable = lib.mkEnableOption "Whether to enable `trusted` group configuration.";
   };
 

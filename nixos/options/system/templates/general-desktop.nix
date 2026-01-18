@@ -1,18 +1,18 @@
 { config, lib, ... }:
 
 let
-  cfg = config.dotnix.templates.generalDesktop;
+  cfg = config.dotnix.templates.general-desktop;
 in
 {
-  options.dotnix.templates.generalDesktop = {
+  options.dotnix.templates.general-desktop = {
     enable = lib.mkEnableOption "Whether to enable general desktop template.";
   };
 
   config = lib.mkIf cfg.enable {
     dotnix.configurations = {
-      trustedGroup.enable = lib.mkDefault true;
-      commonNix.enable = lib.mkDefault true;
-      commonSudoRs.enable = lib.mkDefault true;
+      trusted-group.enable = lib.mkDefault true;
+      common-nix.enable = lib.mkDefault true;
+      common-sudo-rs.enable = lib.mkDefault true;
     };
 
     boot.loader = {

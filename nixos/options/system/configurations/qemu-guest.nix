@@ -1,10 +1,10 @@
 { config, lib, ... }:
 
 let
-  cfg = config.dotnix.configurations.qemuGuest;
+  cfg = config.dotnix.configurations.qemu-guest;
 in
 {
-  options.dotnix.configurations.qemuGuest = {
+  options.dotnix.configurations.qemu-guest = {
     enable = lib.mkEnableOption "Whether to enable qemu virtual machine configuration.";
   };
 

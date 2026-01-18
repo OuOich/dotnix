@@ -5,10 +5,10 @@
 }:
 
 let
-  cfg = config.dotnix.configurations.commonSudoRs;
+  cfg = config.dotnix.configurations.common-sudo-rs;
 in
 {
-  options.dotnix.configurations.commonSudoRs = {
+  options.dotnix.configurations.common-sudo-rs = {
     enable = lib.mkEnableOption "Whether to enable the common sudo-rs configuration.";
 
     trustedGroupNopasswd = lib.mkOption {

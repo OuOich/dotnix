@@ -5,10 +5,10 @@
 }:
 
 let
-  cfg = config.dotnix.configurations.commonSops;
+  cfg = config.dotnix.configurations.common-sops;
 in
 {
-  options.dotnix.configurations.commonSops = {
+  options.dotnix.configurations.common-sops = {
     enable = lib.mkEnableOption "Whether to enable the common sops-nix configuration.";
   };
 
