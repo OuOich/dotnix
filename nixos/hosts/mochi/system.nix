@@ -9,8 +9,9 @@ inputs.nixpkgs.lib.nixosSystem rec {
   modules = [
     self.nixosOptions
 
-    inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
+    inputs.stylix.nixosModules.stylix
 
     {
       home-manager = {
@@ -18,6 +19,10 @@ inputs.nixpkgs.lib.nixosSystem rec {
         useUserPackages = true;
 
         extraSpecialArgs = specialArgs;
+
+        sharedModules = [
+          inputs.stylix.homeModules.stylix
+        ];
 
         # `home-manager.users` defined in ./users.nix
       };
