@@ -33,9 +33,9 @@
 
   home-manager.users =
     let
-      byId = id: self + "/nixos/home/${id}/home.nix";
+      byUserHost = id: self + "/nixos/home/${id}/home.nix";
     in
     {
-      cheng = byId "cheng@mochi";
+      cheng = byUserHost "cheng@mochi";
     };
 }
