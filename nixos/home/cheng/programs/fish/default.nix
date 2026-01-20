@@ -23,12 +23,9 @@
     shellAbbrs = lib.mkMerge [
       {
         i = "fastfetch";
+        e = config.home.sessionVariables.EDITOR or "nano";
         wlc = "wl-copy";
       }
-
-      (lib.mkIf config.programs.neovim.enable {
-        e = "nvim";
-      })
 
       (lib.mkIf config.programs.bat.enable {
         b = "bat";
