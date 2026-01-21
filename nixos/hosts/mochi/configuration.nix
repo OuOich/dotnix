@@ -42,5 +42,10 @@
     };
   };
 
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+  };
+
   system.stateVersion = "25.11";
 }

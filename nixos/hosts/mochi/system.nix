@@ -25,7 +25,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
         sharedModules = [
           self.homeOptions
 
-          inputs.stylix.homeModules.stylix
+          # inputs.stylix.homeModules.stylix
         ];
 
         # `home-manager.users` defined in ./users.nix
