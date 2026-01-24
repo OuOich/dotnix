@@ -12,7 +12,7 @@ in
     programs.fastfetch = {
       enable = true;
 
-      settings = builtins.fromJSON (builtins.readFile ./raw/config.jsonc);
+      settings = builtins.fromJSON (builtins.readFile ./config.jsonc);
     };
   };
 }
