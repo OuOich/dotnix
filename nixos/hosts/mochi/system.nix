@@ -14,6 +14,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
     inputs.stylix.nixosModules.stylix
+    inputs.niri.nixosModules.niri
 
     {
       home-manager = {
@@ -25,7 +26,9 @@ inputs.nixpkgs.lib.nixosSystem rec {
         sharedModules = [
           self.homeOptions
 
+          # NOTE: These modules are automatically imported by the corresponding system configuration.
           # inputs.stylix.homeModules.stylix
+          # inputs.niri.homeModules.niri
         ];
 
         # `home-manager.users` defined in ./users.nix
