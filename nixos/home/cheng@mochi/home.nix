@@ -5,8 +5,17 @@
   home.homeDirectory = osConfig.users.users.cheng.home;
 
   imports = [
-    # Import all personal configurations
-    ../cheng
+    ../cheng/stylix
+
+    ../cheng/desktop/niri
+
+    ../cheng/programs/dotnvim
+    ../cheng/programs/fastfetch
+    ../cheng/programs/fish
+    ../cheng/programs/git
+    ../cheng/programs/github
+    ../cheng/programs/gpg
+    ../cheng/programs/lazygit
   ];
 
   home.stateVersion = "26.05";
