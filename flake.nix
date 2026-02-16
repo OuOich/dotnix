@@ -39,19 +39,19 @@
       imports = [
         inputs.home-manager.flakeModules.home-manager
 
-        ./flake-modules/shell.nix
+        ./flake/shell.nix
 
-        ./flake-modules/library.nix
+        ./flake/library.nix
 
-        ./flake-modules/dotnix.nix
+        ./flake/dotnix.nix
 
-        ./flake-modules/nixos/options/system.nix
-        ./flake-modules/nixos/options/home.nix
+        ./flake/nixos/options/system.nix
+        ./flake/nixos/options/home.nix
 
-        ./flake-modules/nixos/hosts/mochi.nix
-        ./flake-modules/nixos/hosts/taco.nix
+        ./flake/nixos/hosts/mochi.nix
+        ./flake/nixos/hosts/taco.nix
 
-        ./flake-modules/nixos/deploy.nix
+        ./flake/nixos/deploy.nix
       ];
 
       debug = true;
