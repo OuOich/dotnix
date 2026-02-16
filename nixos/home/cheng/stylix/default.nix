@@ -13,6 +13,7 @@ in
 
     autoEnable = true;
     targets = {
+      nixvim.enable = false;
     };
   };
 }

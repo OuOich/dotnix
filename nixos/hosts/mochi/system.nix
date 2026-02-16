@@ -26,6 +26,8 @@ inputs.nixpkgs.lib.nixosSystem rec {
         sharedModules = [
           self.homeOptions
 
+          inputs.dotnvim.homeModules.default
+
           # NOTE: These modules are automatically imported by the corresponding system configuration.
           # inputs.stylix.homeModules.stylix
           # inputs.niri.homeModules.niri
