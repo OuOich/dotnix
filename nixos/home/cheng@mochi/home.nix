@@ -10,6 +10,7 @@
     ../cheng/desktop/niri
 
     ../cheng/programs/dotnvim
+    ../cheng/programs/eza
     ../cheng/programs/fastfetch
     ../cheng/programs/fish
     ../cheng/programs/git
