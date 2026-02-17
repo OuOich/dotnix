@@ -26,6 +26,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
         sharedModules = [
           self.homeOptions
 
+          inputs.catppuccin.homeModules.catppuccin
           inputs.dotnvim.homeModules.default
 
           # NOTE: These modules are automatically imported by the corresponding system configuration.

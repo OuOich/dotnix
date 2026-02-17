@@ -23,6 +23,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin.url = "github:catppuccin/nix/main";
+
     dotnvim.url = "path:/home/chengcheng_0v0/data/Codes/dotnvim";
 
     niri.url = "github:sodiboo/niri-flake/main";

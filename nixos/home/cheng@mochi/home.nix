@@ -17,6 +17,10 @@
     ../cheng/programs/github
     ../cheng/programs/gpg
     ../cheng/programs/lazygit
+
+    # -------------------------
+
+    ./settings.nix
   ];
 
   home.stateVersion = "26.05";
