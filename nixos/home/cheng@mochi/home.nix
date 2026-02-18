@@ -9,6 +9,7 @@
 
     ../cheng/desktop/niri
 
+    ../cheng/programs/bat
     ../cheng/programs/dotnvim
     ../cheng/programs/eza
     ../cheng/programs/fastfetch
