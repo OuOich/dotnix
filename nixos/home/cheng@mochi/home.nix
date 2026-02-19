@@ -6,6 +6,7 @@
 
   imports = [
     ../cheng/stylix
+    ../cheng/catppuccin
 
     ../cheng/desktop/niri
 
