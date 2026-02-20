@@ -25,7 +25,7 @@
 
     catppuccin.url = "github:catppuccin/nix/main";
 
-    dotnvim.url = "path:/home/chengcheng_0v0/data/Codes/dotnvim";
+    dotnvim.url = "github:OuOich/dotnvim/master";
 
     niri.url = "github:sodiboo/niri-flake/main";
   };

@@ -116,14 +116,18 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1771271159,
-        "narHash": "sha256-dHxLUgzkA5lcNMnbQV0A1k3oZ90wBpCrrYwtwX89e3g=",
-        "path": "/home/chengcheng_0v0/data/Codes/dotnvim",
-        "type": "path"
+        "lastModified": 1771577325,
+        "narHash": "sha256-2Gz/se6v5f0VOEk2QzlZD9X9jC0DWJL+TfQp4NSyFyE=",
+        "owner": "OuOich",
+        "repo": "dotnvim",
+        "rev": "1b4a7c4c349e4ebd8da29c0f55a70d7d12a84ad8",
+        "type": "github"
       },
       "original": {
-        "path": "/home/chengcheng_0v0/data/Codes/dotnvim",
-        "type": "path"
+        "owner": "OuOich",
+        "ref": "master",
+        "repo": "dotnvim",
+        "type": "github"
       }
     },
     "firefox-gnome-theme": {
