@@ -61,11 +61,15 @@ in
       type = lib.types.attrsOf (
         lib.types.submodule (
           { name, ... }:
+          let
+            parsedUserHost = dotnix.lib.utils.parseUserHost name;
+          in
           {
             options = {
               secretFile = lib.mkOption {
                 type = lib.types.path;
-                default = self + /secrets/nixos/default.yaml;
+                default = self + /secrets/personal/${parsedUserHost.userName}/default.yaml;
+                description = "Path to the personal secret file for this identity key set.";
               };
               ed25519SecretKey = lib.mkOption {
                 type = lib.types.str;
@@ -78,7 +82,7 @@ in
 
               userName = lib.mkOption {
                 type = lib.types.str;
-                default = (dotnix.lib.utils.parseUserHost name).userName;
+                default = parsedUserHost.userName;
                 description = "The local user who owns these keys.";
               };
 
