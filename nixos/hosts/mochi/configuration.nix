@@ -13,6 +13,7 @@
 
     ./security/ssh
 
+    ./services/ssh
     ./services/keyd
 
     ./desktop/sddm

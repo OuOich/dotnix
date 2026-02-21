@@ -24,7 +24,13 @@
     # -------------------------
 
     ./settings.nix
+
+    ./security/ssh
   ];
+
+  dotnix.configurations = {
+    common-sops.enable = true;
+  };
 
   home.stateVersion = "26.05";
 }

@@ -26,6 +26,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
         sharedModules = [
           self.homeOptions
 
+          inputs.sops-nix.homeManagerModules.sops
           inputs.catppuccin.homeModules.catppuccin
           inputs.dotnvim.homeModules.default
 
