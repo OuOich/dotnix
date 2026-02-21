@@ -13,6 +13,8 @@
 
     ./security/ssh
 
+    ./services/keyd
+
     ./desktop/sddm
     ./desktop/niri
   ];
