@@ -1,0 +1,240 @@
+'$schema' = 'https://starship.rs/config-schema.json'
+
+format = """
+[╭╴](cyan)\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$jobs\
+$status\
+$cmd_duration\
+\n\
+[│ ](cyan)\
+[\
+[\\(=^・・^=\\)](cyan dimmed) \
+$direnv\
+$nix_shell\
+$mise\
+$package\
+$c\
+$cpp\
+$cmake\
+$rust\
+$zig\
+$haskell\
+$golang\
+$nodejs\
+$deno\
+$java\
+$kotlin\
+$gradle\
+$ruby\
+$python\
+$lua\
+$custom\
+](dimmed)\
+\n\
+[╰┄](cyan)\
+$character"""
+
+[character]
+disabled = false
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
+
+[username]
+disabled = false
+format = '[$user]($style)'
+style_user = 'cyan bold'
+style_root = 'red bold'
+show_always = false
+
+[hostname]
+disabled = false
+format = '[@](white)[$hostname]($style) '
+style = 'green bold'
+ssh_only = true
+trim_at = ''
+
+[directory]
+disabled = false
+format = '[$path]($style)[$read_only]($read_only_style) '
+style = 'cyan bold'
+read_only = ' 󰌾'
+read_only_style = 'yellow'
+
+[git_branch]
+disabled = false
+format = '[$symbol$branch(:$remote_branch)]($style) '
+style = 'purple bold'
+symbol = '󰘬 '
+
+[git_commit]
+disabled = false
+format = '[$hash]($style) '
+style = 'purple bold'
+only_detached = false
+commit_hash_length = 7
+
+[git_state]
+disabled = false
+format = '[$state($progress_current/$progress_total)]($style) '
+style = "yellow bold"
+
+[git_status]
+disabled = false
+format = '[$all_status$ahead_behind]($style) '
+style = 'yellow bold'
+
+[jobs]
+disabled = false
+format = '[$symbol$number]($style) '
+style = 'blue bold'
+symbol = '"'
+symbol_threshold = 1
+number_threshold = 1
+
+[status]
+disabled = false
+format = '[$symbol$status( ^$signal_name)]($style) '
+style = "red bold"
+symbol = '*'
+signal_symbol = '*'
+sigint_symbol = '*'
+not_executable_symbol = '?'
+not_found_symbol = '?'
+
+[cmd_duration]
+disabled = false
+format = '[ 󰔛 $duration]($style) '
+style = 'yellow bold dimmed'
+min_time = 2000
+
+[direnv]
+disabled = false
+format = '[$symbol$loaded]($style) '
+style = 'blue bold dimmed'
+symbol = '󰌪 '
+loaded_msg = 'direnv'
+unloaded_msg = 'direnv?'
+allowed_msg = 'direnv?'
+denied_msg = 'direnv?'
+
+[nix_shell]
+disabled = false
+format = '[$symbol$name]($style) '
+style = 'blue bold dimmed'
+symbol = '󱄅 '
+
+[mise]
+disabled = false
+format = '[$symbol$health]($style) '
+style = "yellow dimmed"
+symbol = '󰙛 '
+healthy_symbol = 'mise'
+unhealthy_symbol = 'mise?'
+
+[package]
+disabled = false
+format = '[$symbol$version]($style) '
+style = 'purple bold dimmed'
+symbol = '󰏖 '
+
+[c]
+disabled = false
+format = '[$symbol($version(-$name))]($style) '
+style = 'cyan bold dimmed'
+symbol = "󰙱 "
+
+[cpp]
+disabled = false
+format = '[$symbol($version(-$name))]($style) '
+style = 'cyan bold dimmed'
+symbol = "󰙲 "
+
+[cmake]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'cyan bold dimmed'
+symbol = " "
+
+[rust]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'red bold dimmed'
+symbol = '󱘗 '
+
+[zig]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'yellow bold dimmed'
+symbol = ' '
+
+[haskell]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'purple bold dimmed'
+symbol = '󰲒 '
+
+[golang]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'blue bold dimmed'
+symbol = " "
+
+[java]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'red bold dimmed'
+symbol = '󰬷 '
+
+[kotlin]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'blue bold dimmed'
+symbol = '󱈙 '
+
+[gradle]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'cyan bold dimmed'
+symbol = " "
+
+[nodejs]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'green bold dimmed'
+symbol = '󰎙 '
+
+[deno]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'green bold dimmed'
+symbol = " "
+
+[ruby]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'red bold dimmed'
+symbol = '󰴭 '
+
+[python]
+disabled = false
+format = '[${symbol}${pyenv_prefix}${version}(\($virtualenv\))]($style) '
+style = 'yellow bold dimmed'
+symbol = '󰌠 '
+
+[lua]
+disabled = false
+format = '[$symbol($version)]($style) '
+style = 'blue bold dimmed'
+symbol = '󰢱 '
+
+[os]
+disabled = true
+format = '[$symbol]($style)]'
+symbols = { AIX = 'AIX ', AlmaLinux = ' ', Alpaquita = ' ', Alpine = ' ', Amazon = ' ', Android = ' ', Arch = ' ', Artix = ' ', Bluefin = ' ', CachyOS = ' ', CentOS = ' ', Debian = ' ', DragonFly = ' ', Emscripten = ' ', EndeavourOS = ' ', Fedora = ' ', FreeBSD = ' ', Garuda = ' ', Gentoo = ' ', HardenedBSD = ' ', Illumos = ' ', Kali = ' ', Linux = ' ', Mabox = ' ', Macos = ' ', Manjaro = ' ', Mariner = ' ', MidnightBSD = ' ', Mint = ' ', NetBSD = '󰛳 ', NixOS = ' ', Nobara = ' ', OpenBSD = ' ', OpenCloudOS = ' ', OracleLinux = ' ', Pop = ' ', Raspbian = ' ', RedHatEnterprise = ' ', Redhat = ' ', Redox = ' ', RockyLinux = ' ', SUSE = ' ', Solus = ' ', Ubuntu = ' ', Ultramarine = ' ', Unknown = ' ', Uos = 'U ', Void = '  ', Windows = ' ', openEuler = ' ', openSUSE = ' ' }

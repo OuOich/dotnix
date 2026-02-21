@@ -19,6 +19,7 @@
     ../cheng/programs/github
     ../cheng/programs/gpg
     ../cheng/programs/lazygit
+    ../cheng/programs/starship
 
     # -------------------------
 
