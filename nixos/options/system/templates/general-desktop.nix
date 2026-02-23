@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.dotnix.templates.general-desktop;
@@ -48,5 +53,11 @@ in
 
       defaultEditor = lib.mkDefault true;
     };
+
+    environment.systemPackages = with pkgs; [
+      kitty.terminfo
+      wezterm.terminfo
+      alacritty.terminfo
+    ];
   };
 }
