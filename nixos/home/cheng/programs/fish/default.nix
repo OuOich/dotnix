@@ -40,7 +40,6 @@ lib.mkMerge [
 
         (lib.mkIf config.programs.eza.enable {
           l = "eza";
-          ls = "eza -a";
           la = "eza -a";
           ll = "eza -la";
           lt = "eza -Ta";
