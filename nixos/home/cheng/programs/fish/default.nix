@@ -71,8 +71,8 @@ lib.mkMerge [
 
   (lib.mkIf (options.home ? persistence) {
     home.persistence.${osConfig.fileSystems."/persist".mountPoint} = {
-      files = [
-        ".local/share/fish/fish_history"
+      directories = [
+        ".local/share/fish"
       ];
     };
   })
