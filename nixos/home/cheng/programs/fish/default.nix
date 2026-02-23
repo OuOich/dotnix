@@ -1,6 +1,8 @@
 {
   dotnix,
   config,
+  options,
+  osConfig,
   pkgs,
   lib,
   ...
@@ -66,6 +68,14 @@ lib.mkMerge [
         };
       };
   }
+
+  (lib.mkIf (options.home ? persistence) {
+    home.persistence.${osConfig.fileSystems."/persist".mountPoint} = {
+      files = [
+        ".local/share/fish/fish_history"
+      ];
+    };
+  })
 
   (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) {
     stylix.targets.fish.enable = false;

@@ -1,14 +1,31 @@
 {
-  programs.dotnvim = {
-    enable = true;
+  options,
+  osConfig,
+  lib,
+  ...
+}:
 
-    useFlakeNixpkgs = true;
-    selfContainedOverlays = true;
+lib.mkMerge [
+  {
+    programs.dotnvim = {
+      enable = true;
 
-    defaultEditor = true;
+      useFlakeNixpkgs = true;
+      selfContainedOverlays = true;
 
-    vimdiffAlias = true;
-    vimAlias = true;
-    viAlias = true;
-  };
-}
+      defaultEditor = true;
+
+      vimdiffAlias = true;
+      vimAlias = true;
+      viAlias = true;
+    };
+  }
+
+  (lib.mkIf (options.home ? persistence) {
+    home.persistence.${osConfig.fileSystems."/persist".mountPoint} = {
+      directories = [
+        ".local/state/nvim"
+      ];
+    };
+  })
+]

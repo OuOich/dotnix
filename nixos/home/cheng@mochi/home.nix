@@ -5,6 +5,12 @@
   home.homeDirectory = osConfig.users.users.cheng.home;
 
   imports = [
+    ./impermanence.nix
+
+    ./settings.nix
+
+    # -------------------------
+
     ../cheng/stylix
     ../cheng/catppuccin
 
@@ -22,8 +28,6 @@
     ../cheng/programs/starship
 
     # -------------------------
-
-    ./settings.nix
 
     ./security/ssh
   ];

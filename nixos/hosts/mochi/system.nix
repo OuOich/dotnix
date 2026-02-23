@@ -12,6 +12,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
     self.nixosOptions
 
     inputs.home-manager.nixosModules.home-manager
+    inputs.impermanence.nixosModules.impermanence
     inputs.sops-nix.nixosModules.sops
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
@@ -31,6 +32,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
           inputs.dotnvim.homeModules.default
 
           # NOTE: These modules are automatically imported by the corresponding system configuration.
+          # inputs.impermanence.homeModules.impermanence
           # inputs.stylix.homeModules.stylix
           # inputs.niri.homeModules.niri
         ];

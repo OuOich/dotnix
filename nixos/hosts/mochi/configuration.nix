@@ -5,6 +5,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    ./impermanence.nix
 
     ./users.nix
     ./packages.nix
@@ -27,6 +28,8 @@
     common-sops.enable = true;
     desktop-comps.enable = true;
   };
+
+  sops.useSystemdActivation = true;
 
   nixpkgs = {
     overlays = [
