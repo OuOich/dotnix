@@ -21,8 +21,8 @@
     ../cheng/programs/eza
     ../cheng/programs/fastfetch
     ../cheng/programs/fish
+    ../cheng/programs/gh
     ../cheng/programs/git
-    ../cheng/programs/github
     ../cheng/programs/gpg
     ../cheng/programs/lazygit
     ../cheng/programs/starship
