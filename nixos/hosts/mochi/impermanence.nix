@@ -43,6 +43,18 @@ in
     options = [ "subvol=@persist" ] ++ commonBtrfsMountOptions;
   };
 
+  # Mount the persisted age key directory before stage-2 activation.
+  fileSystems."/var/lib/sops-nix" = {
+    device = "/persist/var/lib/sops-nix";
+    fsType = "none";
+    options = [
+      "bind"
+      "x-gvfs-hide"
+    ];
+    neededForBoot = true;
+    depends = [ "/persist" ];
+  };
+
   environment.persistence."/persist" = {
     hideMounts = true;
 
