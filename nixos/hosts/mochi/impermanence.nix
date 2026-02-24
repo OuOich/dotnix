@@ -70,7 +70,6 @@ in
     files = [
       "/etc/machine-id"
     ];
-
   };
 
   systemd.tmpfiles.rules = lib.mapAttrsToList mkHomeDirTmpfilesRule managedHomeUsers;
