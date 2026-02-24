@@ -8,19 +8,23 @@
 {
   users.users = {
     root = {
+      hashedPasswordFile = config.sops.secrets.hashed_user_password_root.path;
+
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBCfZ2IPPTxJz+hBod0mwsLfIBlBgeam87+LPQqN/DfD cheng@mochi"
       ];
     };
 
     cheng = {
+      isNormalUser = true;
       description = "ChengCheng_0v0";
 
-      isNormalUser = true;
       extraGroups = with config.users.groups; [
         wheel.name
         trusted.name
       ];
+
+      hashedPasswordFile = config.sops.secrets.hashed_user_password_cheng.path;
 
       shell = pkgs.fish;
 
