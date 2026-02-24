@@ -61,7 +61,15 @@ in
       defaultEditor = lib.mkDefault true;
     };
 
+    programs.git = {
+      enable = lib.mkDefault true;
+    };
+
     environment.systemPackages = with pkgs; [
+      curl
+      wget
+      rsync
+
       kitty.terminfo
       wezterm.terminfo
       alacritty.terminfo
