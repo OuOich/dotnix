@@ -20,6 +20,8 @@
 
     ./desktop/sddm
     ./desktop/niri
+
+    ./programs/gnupg
   ];
 
   dotnix.templates.general-desktop.enable = true;
