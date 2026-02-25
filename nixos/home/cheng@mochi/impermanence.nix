@@ -29,6 +29,8 @@
       }
 
       "data"
+
+      ".local/state/nix/profiles"
     ];
   };
 }
