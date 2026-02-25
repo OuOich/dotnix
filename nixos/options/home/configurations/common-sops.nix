@@ -18,7 +18,7 @@ in
       defaultSopsFile = self + /secrets/personal/${config.home.username}/default.yaml;
 
       age = {
-        keyFile = lib.mkDefault "${config.home.homeDirectory}/.sops-nix/age-key.txt";
+        keyFile = lib.mkDefault "${config.xdg.configHome}/sops-nix/age-key.txt";
         # sshKeyPaths = lib.mkDefault [
         #   "${config.home.homeDirectory}/.ssh/id_ed25519"
         #   "${config.home.homeDirectory}/.ssh/id_rsa"

@@ -16,10 +16,6 @@
       # ".local/state"
 
       {
-        directory = ".sops-nix";
-        mode = "0700";
-      }
-      {
         directory = ".ssh";
         mode = "0700";
       }
@@ -31,6 +27,10 @@
       "data"
 
       ".local/state/nix/profiles"
+    ];
+
+    files = [
+      ".config/sops-nix/age-key.txt"
     ];
   };
 }
