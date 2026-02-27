@@ -66,7 +66,6 @@ in
       "/var/lib/bluetooth"
 
       "/etc/NetworkManager/system-connections"
-      "/etc/ssh"
 
       {
         directory = "/var/lib/sops-nix";
