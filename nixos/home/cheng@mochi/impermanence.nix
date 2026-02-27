@@ -16,10 +16,6 @@
       # ".local/state"
 
       {
-        directory = ".ssh";
-        mode = "0700";
-      }
-      {
         directory = ".gnupg";
         mode = "0700";
       }
@@ -31,6 +27,8 @@
 
     files = [
       ".config/sops-nix/age-key.txt"
+
+      ".ssh/known_hosts"
     ];
   };
 }
