@@ -16,6 +16,8 @@ pkgs.mkShell {
     nixfmt-rfc-style
     prettier
 
+    just
+
     sops
 
     maybeInputPkgs.deploy-rs
