@@ -8,10 +8,15 @@
         email = "chengcheng@miao.ms";
       };
 
+      init = {
+        defaultBranch = "master";
+      };
+
       commit = {
         gpgSign = true;
         verbose = true;
       };
+
       pull = {
         rebase = true;
       };
