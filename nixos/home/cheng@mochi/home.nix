@@ -40,6 +40,7 @@
     ../cheng/programs/yazi
     ../cheng/programs/yq
     ../cheng/programs/zoxide
+    ../cheng/programs/kitty
 
     # -------------------------
 
