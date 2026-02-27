@@ -3,6 +3,7 @@
 let
   rootFs = config.fileSystems."/";
   btrfsDevice = rootFs.device;
+  persistenceMountPoint = "/persist";
   rootSnapshotRetention = 3;
 
   managedHomeUsers = lib.filterAttrs (
@@ -16,12 +17,88 @@ let
     "compress=zstd"
     "noatime"
   ];
+
+  systemPersistence = config.environment.persistence.${persistenceMountPoint} or null;
+
+  systemPersistenceDirectories =
+    if systemPersistence == null || !(systemPersistence.enable or true) then
+      [ ]
+    else
+      map (entry: toString entry.dirPath) systemPersistence.directories;
+
+  systemPersistenceFiles =
+    if systemPersistence == null || !(systemPersistence.enable or true) then
+      [ ]
+    else
+      map (entry: toString entry.filePath) systemPersistence.files;
+
+  homeManagerPersistenceDirectories = lib.concatMap (
+    userConfig:
+    let
+      homePersistence = userConfig.home.persistence.${persistenceMountPoint} or null;
+    in
+    if homePersistence == null || !(homePersistence.enable or true) then
+      [ ]
+    else
+      map (entry: toString entry.dirPath) homePersistence.directories
+  ) (lib.attrValues (config.home-manager.users or { }));
+
+  homeManagerPersistenceFiles = lib.concatMap (
+    userConfig:
+    let
+      homePersistence = userConfig.home.persistence.${persistenceMountPoint} or null;
+    in
+    if homePersistence == null || !(homePersistence.enable or true) then
+      [ ]
+    else
+      map (entry: toString entry.filePath) homePersistence.files
+  ) (lib.attrValues (config.home-manager.users or { }));
+
+  filterMigratablePaths =
+    paths:
+    lib.filter (
+      path:
+      lib.hasPrefix "/" path
+      && path != "/nix"
+      && !lib.hasPrefix "/nix/" path
+      && path != persistenceMountPoint
+      && !lib.hasPrefix "${persistenceMountPoint}/" path
+    ) paths;
+
+  sortPathsParentFirst =
+    paths:
+    lib.sort (
+      a: b:
+      let
+        lenA = builtins.stringLength a;
+        lenB = builtins.stringLength b;
+      in
+      if lenA == lenB then a < b else lenA < lenB
+    ) paths;
+
+  migrationDirectoryPaths = sortPathsParentFirst (
+    lib.unique (
+      filterMigratablePaths (systemPersistenceDirectories ++ homeManagerPersistenceDirectories)
+    )
+  );
+
+  migrationFilePaths = lib.sort (a: b: a < b) (
+    lib.unique (filterMigratablePaths (systemPersistenceFiles ++ homeManagerPersistenceFiles))
+  );
+
+  renderMigrationCalls =
+    functionName: paths:
+    lib.concatMapStrings (path: "      ${functionName} ${lib.escapeShellArg path}\n") paths;
 in
 {
   assertions = [
     {
       assertion = rootFs.fsType == "btrfs";
-      message = "mochi impermanence requires fileSystems.\"/\".fsType = \"btrfs\".";
+      message = "mochi impermanence requires fileSystems.\"/\".fsType = \"btrfs\"";
+    }
+    {
+      assertion = config.system.activationScripts ? persist-files;
+      message = "mochi impermanence requires impermanence file persistence activation support";
     }
   ];
 
@@ -85,6 +162,19 @@ in
 
   systemd.tmpfiles.rules = lib.mapAttrsToList mkHomeDirTmpfilesRule managedHomeUsers;
 
+  system.activationScripts.impermanence-persist-files-guard = {
+    deps = [ "createPersistentStorageDirs" ];
+    text = ''
+      if ! findmnt /persist >/dev/null 2>&1; then
+        echo "[impermanence:activation] /persist is not mounted yet." >&2
+        echo "[impermanence:activation] Use boot-only deployment once (deploy --boot), then reboot." >&2
+        exit 1
+      fi
+    '';
+  };
+
+  system.activationScripts.persist-files.deps = lib.mkAfter [ "impermanence-persist-files-guard" ];
+
   boot.initrd.postDeviceCommands = lib.mkAfter /* sh */ ''
     (
       set -e
@@ -95,6 +185,10 @@ in
 
       imperm_error() {
         echo "[impermanence:initrd] ERROR: $*" >&2
+      }
+
+      imperm_path_exists() {
+        [ -e "$1" ] || [ -L "$1" ]
       }
 
       imperm_mounted=0
@@ -116,6 +210,153 @@ in
         imperm_error "$*"
         imperm_dump_subvolumes
         exit 1
+      }
+
+      imperm_is_subvolume() {
+        btrfs subvolume show "$1" >/dev/null 2>&1
+      }
+
+      imperm_ensure_subvolume() {
+        subvolume_name="$1"
+        subvolume_path="/btrfs_tmp/$subvolume_name"
+
+        if imperm_path_exists "$subvolume_path"; then
+          if imperm_is_subvolume "$subvolume_path"; then
+            return 0
+          fi
+
+          imperm_abort "Path $subvolume_path exists but is not a btrfs subvolume."
+        fi
+
+        imperm_log "Creating missing subvolume: $subvolume_name"
+        btrfs subvolume create "$subvolume_path" || imperm_abort "Failed to create subvolume $subvolume_path."
+      }
+
+      imperm_directory_has_entries() {
+        [ -d "$1" ] && [ -n "$(ls -A "$1" 2>/dev/null)" ]
+      }
+
+      imperm_move_directory_contents() {
+        source_dir="$1"
+        destination_dir="$2"
+
+        for entry in "$source_dir"/* "$source_dir"/.[!.]* "$source_dir"/..?*; do
+          if [ ! -e "$entry" ] && [ ! -L "$entry" ]; then
+            continue
+          fi
+
+          mv "$entry" "$destination_dir"/ || imperm_abort "Failed to move $entry into $destination_dir."
+        done
+      }
+
+      imperm_migrate_legacy_nix_store() {
+        legacy_nix="/btrfs_tmp/nix"
+        persisted_nix="/btrfs_tmp/@nix"
+
+        imperm_ensure_subvolume "@nix"
+
+        if [ -L "$legacy_nix" ]; then
+          imperm_abort "Legacy /nix path is a symlink; refusing automatic migration."
+        fi
+
+        if [ ! -d "$legacy_nix" ]; then
+          return 0
+        fi
+
+        if ! imperm_directory_has_entries "$legacy_nix"; then
+          rmdir "$legacy_nix" >/dev/null 2>&1 || true
+          return 0
+        fi
+
+        if imperm_directory_has_entries "$persisted_nix"; then
+          imperm_log "Skipping legacy /nix migration because @nix already has content."
+          return 0
+        fi
+
+        imperm_log "Migrating legacy /nix into @nix."
+        imperm_move_directory_contents "$legacy_nix" "$persisted_nix"
+        rmdir "$legacy_nix" >/dev/null 2>&1 || true
+      }
+
+      imperm_resolve_migration_source() {
+        migration_path="$1"
+        source_from_root="/btrfs_tmp/@root$migration_path"
+        source_from_legacy="/btrfs_tmp$migration_path"
+
+        if imperm_path_exists "$source_from_root"; then
+          printf '%s\n' "$source_from_root"
+          return 0
+        fi
+
+        if imperm_path_exists "$source_from_legacy"; then
+          printf '%s\n' "$source_from_legacy"
+          return 0
+        fi
+
+        return 1
+      }
+
+      imperm_migrate_directory() {
+        migration_path="$1"
+        destination="/btrfs_tmp/@persist$migration_path"
+
+        if imperm_path_exists "$destination"; then
+          if [ -L "$destination" ] || [ ! -d "$destination" ]; then
+            imperm_abort "Persist destination exists but is not a directory: $destination"
+          fi
+
+          return 0
+        fi
+
+        if ! source_path="$(imperm_resolve_migration_source "$migration_path")"; then
+          return 0
+        fi
+
+        if [ -L "$source_path" ] || [ ! -d "$source_path" ]; then
+          imperm_abort "Source exists but is not a directory for $migration_path: $source_path"
+        fi
+
+        mkdir -p "$(dirname "$destination")"
+        imperm_log "Migrating directory $migration_path to @persist."
+        mv "$source_path" "$destination" || imperm_abort "Failed to migrate directory $migration_path."
+      }
+
+      imperm_migrate_file() {
+        migration_path="$1"
+        destination="/btrfs_tmp/@persist$migration_path"
+
+        if imperm_path_exists "$destination"; then
+          if [ -L "$destination" ]; then
+            imperm_abort "Persist destination exists as a symlink (unsupported for migration): $destination"
+          fi
+
+          if [ -d "$destination" ] && [ ! -L "$destination" ]; then
+            imperm_abort "Persist destination exists but is a directory: $destination"
+          fi
+
+          return 0
+        fi
+
+        if ! source_path="$(imperm_resolve_migration_source "$migration_path")"; then
+          return 0
+        fi
+
+        if [ -L "$source_path" ]; then
+          imperm_log "Skipping symlink source for $migration_path; file data is expected under @persist already."
+          return 0
+        fi
+
+        if [ -d "$source_path" ] && [ ! -L "$source_path" ]; then
+          imperm_abort "Source exists but is a directory for $migration_path: $source_path"
+        fi
+
+        if [ ! -f "$source_path" ]; then
+          imperm_abort "Source exists but is not a regular file for $migration_path: $source_path"
+        fi
+
+        mkdir -p "$(dirname "$destination")"
+        imperm_log "Migrating file $migration_path to @persist."
+        mv "$source_path" "$destination" || imperm_abort "Failed to migrate file $migration_path."
       }
 
       imperm_delete_subvolume_recursively() {
@@ -149,10 +390,6 @@ in
 
       imperm_list_root_snapshots() {
         ls -1 /btrfs_tmp/@root-history 2>/dev/null | sort || true
-      }
-
-      imperm_is_subvolume() {
-        btrfs subvolume show "$1" >/dev/null 2>&1
       }
 
       imperm_prune_old_root_snapshots() {
@@ -203,10 +440,20 @@ in
       imperm_mounted=1
       imperm_log "Mounted btrfs top-level on /btrfs_tmp."
 
-      if [ ! -d /btrfs_tmp/@nix ] || [ ! -d /btrfs_tmp/@persist ]; then
-        imperm_abort "Missing @nix or @persist subvolume; run the impermanence bootstrap first."
+      imperm_ensure_subvolume "@persist"
+      imperm_migrate_legacy_nix_store
+
+      imperm_log "Migrating missing persistence paths into @persist."
+      ${renderMigrationCalls "imperm_migrate_directory" migrationDirectoryPaths}${renderMigrationCalls "imperm_migrate_file" migrationFilePaths}
+
+      if ! imperm_is_subvolume /btrfs_tmp/@nix || ! imperm_is_subvolume /btrfs_tmp/@persist; then
+        imperm_abort "Expected @nix and @persist to be btrfs subvolumes after migration."
       fi
       imperm_log "Verified @nix and @persist subvolumes."
+
+      if imperm_path_exists /btrfs_tmp/@root-blank && ! imperm_is_subvolume /btrfs_tmp/@root-blank; then
+        imperm_abort "Path /btrfs_tmp/@root-blank exists but is not a subvolume."
+      fi
 
       if [ ! -d /btrfs_tmp/@root-blank ]; then
         imperm_log "Creating @root-blank baseline subvolume."
@@ -224,7 +471,11 @@ in
       fi
 
       mkdir -p /btrfs_tmp/@root-history
-      if [ -d /btrfs_tmp/@root ]; then
+      if imperm_path_exists /btrfs_tmp/@root && ! imperm_is_subvolume /btrfs_tmp/@root; then
+        imperm_abort "Path /btrfs_tmp/@root exists but is not a subvolume."
+      fi
+
+      if imperm_is_subvolume /btrfs_tmp/@root; then
         root_snapshot_name="$(date -u +%Y%m%d-%H%M%S)"
         root_snapshot_path="/btrfs_tmp/@root-history/$root_snapshot_name"
         if [ -e "$root_snapshot_path" ]; then
