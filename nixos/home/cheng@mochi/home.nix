@@ -31,6 +31,7 @@
     ../cheng/programs/git
     ../cheng/programs/gpg
     ../cheng/programs/jq
+    ../cheng/programs/kitty
     ../cheng/programs/lazygit
     ../cheng/programs/ouch
     ../cheng/programs/procs
@@ -40,7 +41,6 @@
     ../cheng/programs/yazi
     ../cheng/programs/yq
     ../cheng/programs/zoxide
-    ../cheng/programs/kitty
 
     # -------------------------
 
