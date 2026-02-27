@@ -294,6 +294,67 @@ in
           return 1
         }
 
+        imperm_source_root_for_path() {
+          migration_path="$1"
+          source_path="$2"
+
+          if [ "$source_path" = "/btrfs_tmp/@root$migration_path" ]; then
+            printf '%s\n' "/btrfs_tmp/@root"
+            return 0
+          fi
+
+          if [ "$source_path" = "/btrfs_tmp$migration_path" ]; then
+            printf '%s\n' "/btrfs_tmp"
+            return 0
+          fi
+
+          imperm_abort "Unexpected migration source path for $migration_path: $source_path"
+        }
+
+        imperm_prepare_destination_parent() {
+          migration_path="$1"
+          source_path="$2"
+          destination_parent="/btrfs_tmp/@persist$(dirname "$migration_path")"
+
+          mkdir -p "$destination_parent" || imperm_abort "Failed to create destination parent for $migration_path"
+
+          parent_path="$(dirname "$migration_path")"
+          if [ "$parent_path" = "/" ]; then
+            return 0
+          fi
+
+          source_root="$(imperm_source_root_for_path "$migration_path" "$source_path")"
+
+          old_ifs="$IFS"
+          IFS='/'
+
+          current_path=""
+          for segment in $parent_path; do
+            [ -n "$segment" ] || continue
+
+            current_path="$current_path/$segment"
+
+            source_parent="$source_root$current_path"
+            destination_parent="/btrfs_tmp/@persist$current_path"
+
+            if [ -L "$source_parent" ] || [ ! -d "$source_parent" ]; then
+              imperm_abort "Source parent for $migration_path is not a directory: $source_parent"
+            fi
+
+            if [ -L "$destination_parent" ] || [ ! -d "$destination_parent" ]; then
+              imperm_abort "Persist parent for $migration_path is not a directory: $destination_parent"
+            fi
+
+            source_owner="$(stat -c '%u:%g' "$source_parent" 2>/dev/null)" || imperm_abort "Failed to read owner for $source_parent"
+            source_mode="$(stat -c '%a' "$source_parent" 2>/dev/null)" || imperm_abort "Failed to read mode for $source_parent"
+
+            chown "$source_owner" "$destination_parent" || imperm_abort "Failed to sync owner for $destination_parent"
+            chmod "$source_mode" "$destination_parent" || imperm_abort "Failed to sync mode for $destination_parent"
+          done
+
+          IFS="$old_ifs"
+        }
+
         imperm_migrate_directory() {
           migration_path="$1"
           destination="/btrfs_tmp/@persist$migration_path"
@@ -314,7 +375,7 @@ in
             imperm_abort "Source exists but is not a directory for $migration_path: $source_path"
           fi
 
-          mkdir -p "$(dirname "$destination")"
+          imperm_prepare_destination_parent "$migration_path" "$source_path"
           imperm_log "Migrating directory $migration_path to @persist."
           mv "$source_path" "$destination" || imperm_abort "Failed to migrate directory $migration_path."
         }
@@ -352,7 +413,7 @@ in
             imperm_abort "Source exists but is not a regular file for $migration_path: $source_path"
           fi
 
-          mkdir -p "$(dirname "$destination")"
+          imperm_prepare_destination_parent "$migration_path" "$source_path"
           imperm_log "Migrating file $migration_path to @persist."
           mv "$source_path" "$destination" || imperm_abort "Failed to migrate file $migration_path."
         }
