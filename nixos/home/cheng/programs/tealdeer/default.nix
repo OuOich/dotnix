@@ -15,7 +15,7 @@ lib.mkMerge [
   (lib.mkIf (options.home ? persistence) {
     home.persistence.${osConfig.fileSystems."/persist".mountPoint} = {
       directories = [
-        ".cache/tealdeer/tldr-pages"
+        ".cache/tealdeer"
       ];
     };
   })
