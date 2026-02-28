@@ -33,6 +33,10 @@
   };
 
   nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+
     overlays = [
       inputs.niri.overlays.niri
     ];
