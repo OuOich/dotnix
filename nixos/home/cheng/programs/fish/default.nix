@@ -79,9 +79,5 @@ lib.mkMerge [
   (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) {
     stylix.targets.fish.enable = false;
     catppuccin.fish.enable = true;
-    programs.fish.shellInitLast = lib.mkIf (config.catppuccin.fish.flavor != "latte") /* bash */ ''
-      # FIX: Force dark mode to resolve the issue with strange colorscheme failing to apply. 2026-02-17
-      fish_config theme choose "Catppuccin ${lib.toSentenceCase config.catppuccin.fish.flavor}" --color-theme=dark
-    '';
   })
 ]
