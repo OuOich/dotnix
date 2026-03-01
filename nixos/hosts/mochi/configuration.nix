@@ -19,6 +19,7 @@
     ./services/keyd
 
     ./desktop/sddm
+    ./desktop/plasma
     ./desktop/niri
 
     ./programs/gnupg

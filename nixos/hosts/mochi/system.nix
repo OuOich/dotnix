@@ -29,6 +29,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
 
           inputs.sops-nix.homeManagerModules.sops
           inputs.catppuccin.homeModules.catppuccin
+          inputs.plasma-manager.homeModules.plasma-manager
           inputs.dotnvim.homeModules.default
 
           # NOTE: These modules are automatically imported by the corresponding system configuration.

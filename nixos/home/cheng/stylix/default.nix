@@ -30,6 +30,8 @@ in
 
     autoEnable = true;
     targets = {
+      qt.enable = false;
+      gtk.enable = false;
       nixvim.enable = false;
     };
   };

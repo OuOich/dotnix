@@ -19,7 +19,7 @@ lib.mkMerge [
     {
       services.displayManager.sddm = {
         enable = true;
-        package = pkgs.kdePackages.sddm;
+        package = lib.mkForce pkgs.kdePackages.sddm;
         extraPackages = [ sddm-astronaut ];
 
         wayland.enable = true;

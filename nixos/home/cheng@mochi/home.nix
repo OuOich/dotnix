@@ -14,6 +14,7 @@
     ../cheng/stylix
     ../cheng/catppuccin
 
+    ../cheng/desktop/plasma
     ../cheng/desktop/niri
 
     ../cheng/programs/bat
