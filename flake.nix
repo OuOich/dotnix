@@ -6,7 +6,10 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts/main";
 
-    deploy-rs.url = "github:serokell/deploy-rs/master";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -29,11 +32,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix/main";
+    catppuccin = {
+      url = "github:catppuccin/nix/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     dotnvim.url = "github:OuOich/dotnvim/master";
-
-    niri.url = "github:sodiboo/niri-flake/main";
   };
 
   outputs =
