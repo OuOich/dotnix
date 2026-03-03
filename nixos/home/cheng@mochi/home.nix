@@ -14,6 +14,8 @@
     ../cheng/stylix
     ../cheng/catppuccin
 
+    ../cheng/fonts
+
     ../cheng/desktop/plasma
     ../cheng/desktop/niri
 

@@ -24,8 +24,8 @@ lib.mkMerge [
         cursor_trail_decay = "0.18 0.20";
         cursor_trail_start_threshold = 24;
 
-        font_family = "Maple Mono Normal NF CN";
         font_size = 10.0;
+        disable_ligatures = "cursor";
       };
 
       keybindings = {
