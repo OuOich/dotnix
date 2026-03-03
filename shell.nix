@@ -21,6 +21,11 @@ pkgs.mkShell {
     sops
 
     maybeInputPkgs.deploy-rs
+
+    python315
+    uv
+    pyright
+    ruff
   ];
 
   shellHook = ''
