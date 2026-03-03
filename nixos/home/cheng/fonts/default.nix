@@ -84,7 +84,7 @@ lib.mkMerge [
         };
         windowTitle = {
           family = defaultSansFontFamily;
-          weight = "medium";
+          weight = "normal";
           pointSize = 10;
         };
       };
