@@ -16,6 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     dotnix.configurations = {
       trusted-group.enable = lib.mkDefault true;
+      basic-fonts.enable = lib.mkDefault true;
       common-nix.enable = lib.mkDefault true;
       common-sudo-rs.enable = lib.mkDefault true;
     };
