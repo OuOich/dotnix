@@ -1,5 +1,6 @@
 {
   config,
+  options,
   lib,
   ...
 }:
@@ -25,11 +26,12 @@ lib.mkMerge [
     };
   }
 
-  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) {
-    stylix.targets.lazygit.enable = false;
-    catppuccin.lazygit = {
-      enable = true;
-      accent = "blue";
-    };
-  })
+  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) (
+    {
+      catppuccin.lazygit.enable = true;
+    }
+    // lib.optionalAttrs (options ? stylix) {
+      stylix.targets.lazygit.enable = false;
+    }
+  ))
 ]

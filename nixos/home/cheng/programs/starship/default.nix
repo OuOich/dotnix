@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  options,
+  lib,
+  ...
+}:
 
 lib.mkMerge [
   {
@@ -9,8 +14,12 @@ lib.mkMerge [
     };
   }
 
-  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) {
-    stylix.targets.starship.enable = false;
-    catppuccin.starship.enable = true;
-  })
+  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) (
+    {
+      catppuccin.starship.enable = true;
+    }
+    // lib.optionalAttrs (options ? stylix) {
+      stylix.targets.starship.enable = false;
+    }
+  ))
 ]

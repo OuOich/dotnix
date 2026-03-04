@@ -1,5 +1,6 @@
 {
   config,
+  options,
   lib,
   ...
 }:
@@ -11,11 +12,12 @@ lib.mkMerge [
     };
   }
 
-  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) {
-    stylix.targets.fzf.enable = false;
-    catppuccin.fzf = {
-      enable = true;
-      accent = "teal";
-    };
-  })
+  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) (
+    {
+      catppuccin.fzf.enable = true;
+    }
+    // lib.optionalAttrs (options ? stylix) {
+      stylix.targets.fzf.enable = false;
+    }
+  ))
 ]

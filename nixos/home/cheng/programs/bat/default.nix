@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  options,
+  lib,
+  ...
+}:
 
 lib.mkMerge [
   {
@@ -7,8 +12,12 @@ lib.mkMerge [
     };
   }
 
-  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) {
-    stylix.targets.bat.enable = false;
-    catppuccin.bat.enable = true;
-  })
+  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) (
+    {
+      catppuccin.bat.enable = true;
+    }
+    // lib.optionalAttrs (options ? stylix) {
+      stylix.targets.bat.enable = false;
+    }
+  ))
 ]

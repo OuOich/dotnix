@@ -1,7 +1,17 @@
 {
-  programs.plasma = {
-    enable = true;
-  };
+  options,
+  lib,
+  ...
+}:
 
-  stylix.targets.kde.enable = false;
-}
+lib.mkMerge [
+  {
+    programs.plasma = {
+      enable = true;
+    };
+  }
+
+  (lib.optionalAttrs (options ? stylix) {
+    stylix.targets.kde.enable = false;
+  })
+]

@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  options,
+  lib,
+  ...
+}:
 
 lib.mkMerge [
   {
@@ -13,7 +18,7 @@ lib.mkMerge [
         repaint_delay = 0;
         sync_to_monitor = true;
 
-        background_opacity = 0.85;
+        background_opacity = lib.mkForce 0.85;
         background_blur = 64;
 
         window_padding_width = "6 6";
@@ -40,8 +45,12 @@ lib.mkMerge [
     };
   }
 
-  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) {
-    stylix.targets.kitty.enable = false;
-    catppuccin.kitty.enable = true;
-  })
+  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) (
+    {
+      catppuccin.kitty.enable = true;
+    }
+    // lib.optionalAttrs (options ? stylix) {
+      stylix.targets.kitty.enable = false;
+    }
+  ))
 ]

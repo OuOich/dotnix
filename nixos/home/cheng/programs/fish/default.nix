@@ -76,8 +76,12 @@ lib.mkMerge [
     };
   })
 
-  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) {
-    stylix.targets.fish.enable = false;
-    catppuccin.fish.enable = true;
-  })
+  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) (
+    {
+      catppuccin.fish.enable = true;
+    }
+    // lib.optionalAttrs (options ? stylix) {
+      stylix.targets.fish.enable = false;
+    }
+  ))
 ]
