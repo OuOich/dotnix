@@ -1,5 +1,6 @@
 {
   config,
+  options,
   pkgs,
   lib,
   ...
@@ -50,45 +51,47 @@ lib.mkMerge [
     };
   }
 
-  (lib.mkIf config.programs.plasma.enable {
-    programs.plasma.fonts =
-      let
-        defaultSansFontFamily = "Noto Sans CJK SC";
-        defaultMonoFontFamily = "Maple Mono NF CN";
-      in
-      {
-        general = {
-          family = defaultSansFontFamily;
-          weight = "normal";
-          pointSize = 10;
+  (lib.optionalAttrs (options.programs ? plasma) (
+    lib.mkIf config.programs.plasma.enable {
+      programs.plasma.fonts =
+        let
+          defaultSansFontFamily = "Noto Sans CJK SC";
+          defaultMonoFontFamily = "Maple Mono NF CN";
+        in
+        {
+          general = {
+            family = defaultSansFontFamily;
+            weight = "normal";
+            pointSize = 10;
+          };
+          fixedWidth = {
+            family = defaultMonoFontFamily;
+            weight = "normal";
+            pointSize = 10;
+          };
+          small = {
+            family = defaultSansFontFamily;
+            weight = "normal";
+            pointSize = 8;
+          };
+          toolbar = {
+            family = defaultSansFontFamily;
+            weight = "normal";
+            pointSize = 10;
+          };
+          menu = {
+            family = defaultSansFontFamily;
+            weight = "normal";
+            pointSize = 10;
+          };
+          windowTitle = {
+            family = defaultSansFontFamily;
+            weight = "normal";
+            pointSize = 10;
+          };
         };
-        fixedWidth = {
-          family = defaultMonoFontFamily;
-          weight = "normal";
-          pointSize = 10;
-        };
-        small = {
-          family = defaultSansFontFamily;
-          weight = "normal";
-          pointSize = 8;
-        };
-        toolbar = {
-          family = defaultSansFontFamily;
-          weight = "normal";
-          pointSize = 10;
-        };
-        menu = {
-          family = defaultSansFontFamily;
-          weight = "normal";
-          pointSize = 10;
-        };
-        windowTitle = {
-          family = defaultSansFontFamily;
-          weight = "normal";
-          pointSize = 10;
-        };
-      };
-  })
+    }
+  ))
 
   (lib.mkIf config.programs.kitty.enable {
     programs.kitty = {

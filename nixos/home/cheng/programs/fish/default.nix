@@ -68,7 +68,7 @@ lib.mkMerge [
       };
   }
 
-  (lib.mkIf (options.home ? persistence) {
+  (lib.optionalAttrs (options.home ? persistence) {
     home.persistence.${osConfig.fileSystems."/persist".mountPoint} = {
       directories = [
         ".local/share/fish"
