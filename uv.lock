@@ -67,12 +67,14 @@ version = "0.1.0"
 source = { virtual = "scripts" }
 dependencies = [
     { name = "requests" },
+    { name = "rich" },
     { name = "typer" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "requests" },
+    { name = "rich" },
     { name = "typer" },
 ]
 

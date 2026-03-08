@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "type": "object",
+
+  "required": ["wallpapers"],
+
+  "properties": {
+    "wallpapers": {
+      "type": "object",
+
+      "description": "A container for wallpaper entries, where keys are unique identifiers.",
+
+      "additionalProperties": {
+        "type": "object",
+
+        "required": [
+          "category",
+          "refs",
+          "source",
+          "resolution",
+          "ratio",
+          "file_type",
+          "file_size",
+          "url",
+          "hash"
+        ],
+
+        "properties": {
+          "description": {
+            "type": ["string", "null"],
+            "description": "A brief textual description of the wallpaper. Can be null."
+          },
+
+          "category": {
+            "type": "string",
+            "description": "The classification or genre of the wallpaper content."
+          },
+
+          "refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "A list of reference URLs related to the image."
+          },
+
+          "source": {
+            "type": "string",
+            "description": "The origin or platform where the wallpaper was found."
+          },
+
+          "resolution": {
+            "type": "string",
+            "pattern": "^\\d+x\\d+$",
+            "description": "The image dimensions in {Width}x{Height} format."
+          },
+
+          "ratio": {
+            "type": "number",
+            "description": "The aspect ratio calculated as width divided by height."
+          },
+
+          "file_type": {
+            "type": "string",
+            "description": "The MIME type of the file."
+          },
+
+          "file_size": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The size of the file in bytes."
+          },
+
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "The direct link to the full-size image file."
+          },
+
+          "hash": {
+            "type": "string",
+            "description": "The cryptographic checksum for file integrity verification."
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
 name = "dotnix-scripts"
 version = "0.1.0"
 requires-python = ">=3.15"
-dependencies = ["typer", "requests"]
+dependencies = ["requests", "typer", "rich"]
 
 [tool.uv]
 package = false

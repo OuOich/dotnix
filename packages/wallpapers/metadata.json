@@ -1,0 +1,44 @@
+{
+  "$schema": "metadata.schema.json",
+
+  "wallpapers": {
+    "rotarran-1": {
+      "description": null,
+      "category": "anime",
+      "refs": ["https://www.pixiv.net/artworks/120560744"],
+      "source": "pixiv",
+      "resolution": "7441x3728",
+      "ratio": 2,
+      "file_type": "image/jpeg",
+      "file_size": 19560310,
+      "url": "https://i.pximg.net/img-original/img/2024/07/15/19/53/51/120560744_p0.jpg",
+      "hash": "sha256-lBh7z8PE6tT/3eIKbc9iuv5rj2crXhwvD9AhGN4fxRg="
+    },
+
+    "city-dusk-smoking-girl": {
+      "description": null,
+      "category": "anime",
+      "refs": ["https://wallhaven.cc/w/xe761z"],
+      "source": "wallhaven",
+      "resolution": "10344x4760",
+      "ratio": 2.17,
+      "file_type": "image/jpeg",
+      "file_size": 14303441,
+      "url": "https://w.wallhaven.cc/full/xe/wallhaven-xe761z.jpg",
+      "hash": "sha256-7kSeZ2PfjHfx6nqbMZWiMN6rXyDD2+jLIroY6WOj/r4="
+    },
+
+    "leaving-breeze": {
+      "description": null,
+      "category": "anime",
+      "refs": ["https://www.pixiv.net/artworks/118178097"],
+      "source": "pixiv",
+      "resolution": "5000x2813",
+      "ratio": 1.78,
+      "file_type": "image/jpeg",
+      "file_size": 9795256,
+      "url": "https://i.pximg.net/img-original/img/2024/04/26/20/44/13/118178097_p0.jpg",
+      "hash": "sha256-OUGk0xuEClwousDOv+iMfejPiaXQwjh3dD3xRnSymPk="
+    }
+  }
+}

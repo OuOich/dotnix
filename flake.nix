@@ -66,6 +66,8 @@
 
         ./flake/library.nix
 
+        ./flake/packages/wallpapers.nix
+
         ./flake/dotnix.nix
 
         ./flake/nixos/options/system.nix
