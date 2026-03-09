@@ -12,7 +12,7 @@ in
     programs.fastfetch = {
       enable = true;
 
-      settings = lib.importJSON ./config.jsonc;
+      settings = lib.importJSON ./config.json;
     };
   };
 }
