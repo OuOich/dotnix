@@ -17,7 +17,7 @@
 
     cheng = {
       isNormalUser = true;
-      description = "ChengCheng_0v0";
+      description = "OuOi. Cheng";
 
       extraGroups = with config.users.groups; [
         wheel.name

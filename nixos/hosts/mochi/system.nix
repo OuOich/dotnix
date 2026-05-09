@@ -16,6 +16,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
     inputs.sops-nix.nixosModules.sops
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
+    inputs.noctalia.nixosModules.default
 
     {
       home-manager = {
@@ -30,6 +31,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
           inputs.sops-nix.homeManagerModules.sops
           inputs.catppuccin.homeModules.catppuccin
           inputs.plasma-manager.homeModules.plasma-manager
+          inputs.noctalia.homeModules.default
           inputs.dotnvim.homeModules.default
 
           # NOTE: These modules are automatically imported by the corresponding system configuration.

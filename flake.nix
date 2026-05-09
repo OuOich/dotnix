@@ -48,6 +48,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.follows = "noctalia-qs";
+    };
+
+    matugen = {
+      url = "github:/InioX/matugen/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dotnvim.url = "github:OuOich/dotnvim/master";
   };
 

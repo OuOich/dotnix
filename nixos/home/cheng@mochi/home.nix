@@ -11,13 +11,15 @@
 
     # -------------------------
 
+    ../cheng/defaults
+    ../cheng/fonts
     ../cheng/stylix
     ../cheng/catppuccin
-
-    ../cheng/fonts
+    ../cheng/wallpapers.nix
 
     ../cheng/desktop/plasma
     ../cheng/desktop/niri
+    ../cheng/desktop/noctalia
 
     ../cheng/programs/bat
     ../cheng/programs/dasel
@@ -36,6 +38,7 @@
     ../cheng/programs/jq
     ../cheng/programs/kitty
     ../cheng/programs/lazygit
+    ../cheng/programs/matugen
     ../cheng/programs/ouch
     ../cheng/programs/procs
     ../cheng/programs/ripgrep

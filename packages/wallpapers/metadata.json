@@ -15,7 +15,20 @@
       "hash": "sha256-lBh7z8PE6tT/3eIKbc9iuv5rj2crXhwvD9AhGN4fxRg="
     },
 
-    "city-dusk-smoking-girl": {
+    "leaving-breeze": {
+      "description": null,
+      "category": "anime",
+      "refs": ["https://www.pixiv.net/artworks/118178097"],
+      "source": "pixiv",
+      "resolution": "5000x2813",
+      "ratio": 1.78,
+      "file_type": "image/jpeg",
+      "file_size": 9795256,
+      "url": "https://i.pximg.net/img-original/img/2024/04/26/20/44/13/118178097_p0.jpg",
+      "hash": "sha256-OUGk0xuEClwousDOv+iMfejPiaXQwjh3dD3xRnSymPk="
+    },
+
+    "city-dusk-balcony-girl": {
       "description": null,
       "category": "anime",
       "refs": ["https://wallhaven.cc/w/xe761z"],
@@ -28,17 +41,81 @@
       "hash": "sha256-7kSeZ2PfjHfx6nqbMZWiMN6rXyDD2+jLIroY6WOj/r4="
     },
 
-    "leaving-breeze": {
+    "eva-street-ayanami-rei": {
       "description": null,
       "category": "anime",
-      "refs": ["https://www.pixiv.net/artworks/118178097"],
-      "source": "pixiv",
-      "resolution": "5000x2813",
+      "refs": ["https://wallhaven.cc/w/5gx3r3"],
+      "source": "wallhaven",
+      "resolution": "4096x1728",
+      "ratio": 2.37,
+      "file_type": "image/jpeg",
+      "file_size": 3283630,
+      "url": "https://w.wallhaven.cc/full/5g/wallhaven-5gx3r3.jpg",
+      "hash": "sha256-aHRoj3GbOcHL4oQqBPJR/H46oQY/vYogqUxkZlqF12o="
+    },
+
+    "nikki": {
+      "description": null,
+      "category": "anime",
+      "refs": [
+        "https://wallhaven.cc/w/9o6zqx",
+        "https://www.pixiv.net/artworks/124912861"
+      ],
+      "source": "wallhaven",
+      "resolution": "7000x3920",
+      "ratio": 1.79,
+      "file_type": "image/jpeg",
+      "file_size": 4759209,
+      "url": "https://w.wallhaven.cc/full/9o/wallhaven-9o6zqx.jpg",
+      "hash": "sha256-JEfQFaq7J8MWN6WRpk4RTr8o42WDoJEYX8ssEc7si3s="
+    },
+
+    "monika-desk": {
+      "description": null,
+      "category": "anime",
+      "refs": [
+        "https://wallhaven.cc/w/gwzd8d",
+        "https://x.com/akou001/status/1878724813931655677"
+      ],
+      "source": "wallhaven",
+      "resolution": "5312x2747",
+      "ratio": 1.93,
+      "file_type": "image/png",
+      "file_size": 10652051,
+      "url": "https://w.wallhaven.cc/full/gw/wallhaven-gwzd8d.png",
+      "hash": "sha256-ii3syg2Wte8v2LASkQROEvpq39WkpzqSEehLcPSo7Js="
+    },
+
+    "wallhaven-x618xl": {
+      "description": null,
+      "category": "anime",
+      "refs": [
+        "https://wallhaven.cc/w/x618xl",
+        "https://www.ggac.com/v2/work/detail/114621"
+      ],
+      "source": "wallhaven",
+      "resolution": "3000x1688",
       "ratio": 1.78,
       "file_type": "image/jpeg",
-      "file_size": 9795256,
-      "url": "https://i.pximg.net/img-original/img/2024/04/26/20/44/13/118178097_p0.jpg",
-      "hash": "sha256-OUGk0xuEClwousDOv+iMfejPiaXQwjh3dD3xRnSymPk="
+      "file_size": 760505,
+      "url": "https://w.wallhaven.cc/full/x6/wallhaven-x618xl.jpg",
+      "hash": "sha256-IYFhrUmQmiiFDkESpIYrIsioFp+GsNdVRm07AzVzub8="
+    },
+
+    "wallhaven-je8d2w": {
+      "description": null,
+      "category": "anime",
+      "refs": [
+        "https://wallhaven.cc/w/je8d2w",
+        "https://www.pixiv.net/artworks/89809841"
+      ],
+      "source": "wallhaven",
+      "resolution": "3840x2160",
+      "ratio": 1.78,
+      "file_type": "image/jpeg",
+      "file_size": 5838556,
+      "url": "https://w.wallhaven.cc/full/je/wallhaven-je8d2w.jpg",
+      "hash": "sha256-0m7QpySmZvUS0bP9iN281lHNZRx/AL/ScVQH+o0/COA="
     }
   }
 }

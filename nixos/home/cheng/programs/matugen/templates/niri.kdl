@@ -1,0 +1,44 @@
+layout {
+    background-color "{{ colors.background.default.hex }}"
+
+    focus-ring {
+        on
+        active-color "{{ colors.primary.default.hex }}"
+        inactive-color "{{ colors.outline.default.hex }}90"
+        urgent-color "{{ colors.error.default.hex }}"
+    }
+
+    border {
+        on
+        active-color "{{ colors.primary.default.hex }}"
+        inactive-color "{{ colors.outline.default.hex }}90"
+        urgent-color "{{ colors.error.default.hex }}"
+    }
+
+    shadow {
+        on
+        color "{{ colors.shadow.default.hex }}60"
+        inactive-color "{{ colors.shadow.default.hex }}60"
+    }
+
+    tab-indicator {
+        on
+        active-color "{{ colors.secondary.default.hex }}"
+        inactive-color "{{ colors.surface_variant.default.hex }}"
+        urgent-color "{{ colors.error.default.hex }}"
+    }
+
+    insert-hint {
+        on
+        color "{{ colors.primary.default.hex }}80"
+    }
+}
+
+overview {
+    backdrop-color "{{ colors.surface.default.hex }}"
+
+    workspace-shadow {
+        on
+        color "{{ colors.shadow.default.hex }}70"
+    }
+}

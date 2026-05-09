@@ -18,8 +18,8 @@ lib.mkMerge [
         repaint_delay = 0;
         sync_to_monitor = true;
 
-        background_opacity = lib.mkForce 0.85;
-        background_blur = 64;
+        background_opacity = lib.mkForce 0.90;
+        # background_blur = 64;
 
         window_padding_width = "6 6";
 
