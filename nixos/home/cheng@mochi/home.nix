@@ -11,10 +11,10 @@
 
     # -------------------------
 
-    ../cheng/defaults
+    ../cheng/defaults.nix
     ../cheng/fonts
     ../cheng/stylix
-    ../cheng/catppuccin
+    ../cheng/catppuccin.nix
     ../cheng/wallpapers.nix
 
     ../cheng/desktop/plasma
