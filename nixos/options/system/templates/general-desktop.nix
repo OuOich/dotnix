@@ -33,6 +33,8 @@ in
       efi.efiSysMountPoint = lib.mkDefault "/boot";
     };
 
+    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+
     networking = {
       useDHCP = lib.mkDefault true;
       nameservers = lib.mkDefault [
