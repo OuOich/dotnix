@@ -173,8 +173,24 @@ in
 
     system.activationScripts.persist-files.deps = lib.mkAfter [ "impermanence-persist-files-guard" ];
 
-    boot.initrd.postDeviceCommands = lib.mkAfter /* sh */ ''
-      (
+    boot.initrd.systemd.services.dotnix-impermanence-root-reset = {
+      description = "Reset impermanent btrfs root subvolume";
+
+      requiredBy = [ "sysroot.mount" ];
+
+      after = [ "initrd-root-device.target" ];
+      before = [
+        "sysroot.mount"
+        "shutdown.target"
+      ];
+
+      conflicts = [ "shutdown.target" ];
+
+      unitConfig.DefaultDependencies = false;
+
+      serviceConfig.Type = "oneshot";
+
+      script = /* sh */ ''
         set -e
 
         imperm_log() {
@@ -552,7 +568,7 @@ in
         umount /btrfs_tmp || imperm_abort "Failed to unmount /btrfs_tmp."
         imperm_mounted=0
         imperm_log "Impermanence initrd reset completed."
-      ) || exit 1
-    '';
+      '';
+    };
   };
 }
