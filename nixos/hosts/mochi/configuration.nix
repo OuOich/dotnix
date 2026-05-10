@@ -1,16 +1,12 @@
-{ inputs, ... }:
-
 {
   networking.hostName = "mochi";
 
   imports = [
     ./hardware-configuration.nix
-    ./impermanence.nix
-    ./sops.nix
-
     ./users.nix
     ./packages.nix
-
+    ./impermanence.nix
+    ./sops.nix
     ./stylix
 
     ./security/ssh
@@ -22,6 +18,7 @@
     ./desktop/plasma
     ./desktop/niri
 
+    ./programs/fish
     ./programs/gnupg
   ];
 
@@ -33,21 +30,9 @@
     desktop-comps.enable = true;
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-
-    overlays = [
-      inputs.niri.overlays.niri
-    ];
-  };
-
   time.timeZone = "Asia/Shanghai";
 
   i18n.defaultLocale = "en_US.UTF-8";
-
-  programs.fish.enable = true;
 
   system.stateVersion = "25.11";
 }

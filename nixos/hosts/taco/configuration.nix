@@ -1,16 +1,12 @@
-{ inputs, ... }:
-
 {
   networking.hostName = "taco";
 
   imports = [
     ./hardware-configuration.nix
-    ./impermanence.nix
-    ./sops.nix
-
     ./users.nix
     ./packages.nix
-
+    ./impermanence.nix
+    ./sops.nix
     ./stylix
 
     ./security/ssh
@@ -21,6 +17,7 @@
     ./desktop/sddm
     ./desktop/niri
 
+    ./programs/fish
     ./programs/gnupg
   ];
 
@@ -29,16 +26,6 @@
   dotnix.configurations = {
     common-sops.enable = true;
     desktop-comps.enable = true;
-  };
-
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-
-    overlays = [
-      inputs.niri.overlays.niri
-    ];
   };
 
   time.timeZone = "Asia/Shanghai";
@@ -61,8 +48,6 @@
       };
     };
   };
-
-  programs.fish.enable = true;
 
   system.stateVersion = "25.11";
 }
