@@ -116,6 +116,38 @@
       "file_size": 5838556,
       "url": "https://w.wallhaven.cc/full/je/wallhaven-je8d2w.jpg",
       "hash": "sha256-0m7QpySmZvUS0bP9iN281lHNZRx/AL/ScVQH+o0/COA="
+    },
+
+    "wallhaven-qr3mdr": {
+      "description": null,
+      "category": "anime",
+      "refs": [
+        "https://wallhaven.cc/w/qr3mdr",
+        "https://www.pixiv.net/en/artworks/141454055"
+      ],
+      "source": "wallhaven",
+      "resolution": "5847x2480",
+      "ratio": 2.36,
+      "file_type": "image/jpeg",
+      "file_size": 8165381,
+      "url": "https://w.wallhaven.cc/full/qr/wallhaven-qr3mdr.jpg",
+      "hash": "sha256-98ELljglN8F0KMEfOUD+rSlBLsFAShnctOSvMSHxOXQ="
+    },
+
+    "wallhaven-qrjxdq": {
+      "description": null,
+      "category": "anime",
+      "refs": [
+        "https://wallhaven.cc/w/qrjxdq",
+        "https://www.pixiv.net/artworks/136226834"
+      ],
+      "source": "wallhaven",
+      "resolution": "5000x2790",
+      "ratio": 1.79,
+      "file_type": "image/jpeg",
+      "file_size": 7746419,
+      "url": "https://w.wallhaven.cc/full/qr/wallhaven-qrjxdq.jpg",
+      "hash": "sha256-D/HUGC5uKSy1wJWgysJk/mpDHTg4/NvRMfvqEQyDyoY="
     }
   }
 }

@@ -10,5 +10,14 @@
 
       profiles.system.path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mochi;
     };
+
+    taco = {
+      hostname = "192.168.2.5";
+      sshUser = "root";
+
+      fastConnection = true;
+
+      profiles.system.path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.taco;
+    };
   };
 }
