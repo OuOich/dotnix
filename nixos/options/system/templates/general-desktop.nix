@@ -50,10 +50,10 @@ in
     };
 
     services.fail2ban = {
-      enable = true;
+      enable = lib.mkDefault true;
 
-      maxretry = 3;
-      bantime = "1h";
+      maxretry = lib.mkDefault 3;
+      bantime = lib.mkDefault "1h";
     };
 
     programs.vim = {
