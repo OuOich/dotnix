@@ -1,7 +1,6 @@
 {
   config,
   options,
-  osConfig,
   lib,
   ...
 }:
@@ -364,7 +363,7 @@ lib.mkMerge [
   })
 
   (lib.optionalAttrs (options.home ? persistence) {
-    home.persistence.${osConfig.fileSystems."/persist".mountPoint} = {
+    home.persistence."/persist" = {
       files = [
         ".config/noctalia/colorschemes/Matugen/Matugen.json"
         ".cache/noctalia/shell-state.json"

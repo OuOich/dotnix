@@ -1,5 +1,4 @@
 {
-  config,
   options,
   pkgs,
   lib,
@@ -36,7 +35,7 @@ lib.mkMerge [
   )
 
   (lib.mkIf (options.environment ? persistence) {
-    environment.persistence.${config.fileSystems."/persist".mountPoint} = {
+    environment.persistence."/persist" = {
       files = [
         "/var/lib/sddm/state.conf"
       ];
