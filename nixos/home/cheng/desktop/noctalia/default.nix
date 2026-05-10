@@ -10,7 +10,7 @@ lib.mkMerge [
     programs.noctalia-shell = {
       enable = true;
 
-      settings = rec {
+      settings = {
         ui = {
           panelBackgroundOpacity = 1;
         };
@@ -35,7 +35,9 @@ lib.mkMerge [
         hooks = {
           enabled = true;
 
-          wallpaperChange = lib.mkIf (colorSchemes.predefinedScheme == "Matugen") /* bash */ "matugen image $1";
+          wallpaperChange = lib.mkIf (
+            config.programs.noctalia-shell.settings.colorSchemes.predefinedScheme == "Matugen"
+          ) /* bash */ "matugen image $1";
         };
       };
     };

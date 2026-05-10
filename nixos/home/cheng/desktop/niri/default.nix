@@ -1,6 +1,7 @@
 {
   config,
   options,
+  osConfig,
   lib,
   ...
 }:
@@ -13,6 +14,10 @@ lib.mkMerge [
           (lib.mkIf (config.programs ? noctalia-shell) (
             lib.mkIf config.programs.noctalia-shell.enable { command = [ "noctalia-shell" ]; }
           ))
+
+          (lib.mkIf config.dotnix.programs.matugen.enable {
+            sh = "sleep 5 && matugen image ${config.settings.theme.wallpaper.default}";
+          })
         ];
 
         input = {
@@ -356,6 +361,15 @@ lib.mkMerge [
           run touch ${lib.escapeShellArg niriMatugenConfig}
         fi
       '';
+  })
+
+  (lib.optionalAttrs (options.home ? persistence) {
+    home.persistence.${osConfig.fileSystems."/persist".mountPoint} = {
+      files = [
+        ".config/noctalia/colorschemes/Matugen/Matugen.json"
+        ".cache/noctalia/shell-state.json"
+      ];
+    };
   })
 
   (lib.optionalAttrs (options ? stylix) {
