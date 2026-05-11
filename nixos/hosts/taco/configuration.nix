@@ -9,6 +9,8 @@
     ./sops.nix
     ./stylix
 
+    ./hardware/trackpoint
+
     ./security/ssh
 
     ./services/ssh
