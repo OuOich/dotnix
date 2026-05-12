@@ -65,6 +65,12 @@
     };
 
     dotnvim.url = "github:OuOich/dotnvim/master";
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs =

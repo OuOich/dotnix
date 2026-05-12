@@ -706,7 +706,8 @@
         "noctalia-qs": "noctalia-qs",
         "plasma-manager": "plasma-manager",
         "sops-nix": "sops-nix",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "zen-browser": "zen-browser"
       }
     },
     "sops-nix": {
@@ -972,6 +973,30 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778554891,
+        "narHash": "sha256-v525DBLiHVkmdAJklOX7QRk8fvyRJ9CSZEJXX0HgqgI=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "d00c640d4b15bf88528a3127a4905efe3dd7c9e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "ref": "main",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

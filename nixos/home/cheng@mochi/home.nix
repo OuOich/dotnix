@@ -46,6 +46,7 @@
     ../cheng/programs/tealdeer
     ../cheng/programs/yazi
     ../cheng/programs/yq
+    ../cheng/programs/zen-browser
     ../cheng/programs/zoxide
 
     # -------------------------
