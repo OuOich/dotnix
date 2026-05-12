@@ -16,6 +16,7 @@
     ../cheng/stylix
     ../cheng/catppuccin.nix
     ../cheng/wallpapers.nix
+    ../cheng/im
 
     ../cheng/desktop/plasma
     ../cheng/desktop/niri
