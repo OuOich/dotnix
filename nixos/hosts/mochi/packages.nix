@@ -1,14 +1,8 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-
-    overlays = [
-      inputs.niri.overlays.niri
-    ];
+  nixpkgs.config = {
+    allowUnfree = true;
   };
 
   environment.systemPackages = with pkgs; [

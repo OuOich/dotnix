@@ -92,6 +92,8 @@
 
         ./flake/dotnix.nix
 
+        ./flake/nixos/overlays.nix
+
         ./flake/nixos/options/system.nix
         ./flake/nixos/options/home.nix
 

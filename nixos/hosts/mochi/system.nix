@@ -9,6 +9,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
   };
 
   modules = [
+    self.nixosOverlays
     self.nixosOptions
 
     inputs.home-manager.nixosModules.default
