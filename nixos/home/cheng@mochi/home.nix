@@ -40,6 +40,7 @@
     ../cheng/programs/kitty
     ../cheng/programs/lazygit
     ../cheng/programs/matugen
+    ../cheng/programs/opencode
     ../cheng/programs/ouch
     ../cheng/programs/procs
     ../cheng/programs/ripgrep

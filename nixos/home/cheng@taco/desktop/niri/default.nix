@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.niri = {
@@ -16,6 +16,10 @@
           };
           scale = 1;
         };
+      };
+
+      layout = {
+        gaps = lib.mkForce 10;
       };
     };
   };

@@ -1,0 +1,193 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "mcp": {
+    "context7": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp/oauth"
+    },
+    "git": {
+      "enabled": false,
+      "type": "local",
+      "command": [
+        "nix",
+        "shell",
+        "nixpkgs/3955288#uv",
+        "-c",
+        "uvx",
+        "mcp-server-git@0.6.2"
+      ]
+    }
+  },
+
+  "permission": {
+    "*": "allow",
+
+    "external_directory": {
+      "/tmp/**": "allow",
+      "/nix/store/**": "allow"
+    },
+
+    "bash": {
+      "sudo *": "ask"
+    },
+
+    "edit": {
+      "/nix/store/**": "deny"
+    }
+  },
+
+  "provider": {
+    "rightcode_openai": {
+      "npm": "@ai-sdk/openai",
+      "name": "RightCode/OpenAI",
+
+      "options": {
+        "setCacheKey": true,
+        "baseURL": "https://right.codes/codex/v1"
+      },
+
+      "models": {
+        "gpt-5.5": {
+          "id": "gpt-5.5",
+          "name": "GPT-5.5",
+          "family": "gpt",
+          "release_date": "2026-04-23",
+
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "temperature": false,
+
+          "cost": {
+            "input": 1,
+            "output": 6,
+            "cache_write": 0,
+            "cache_read": 0.1,
+            "context_over_200k": {
+              "input": 1,
+              "output": 6,
+              "cache_write": 0,
+              "cache_read": 0.1
+            }
+          },
+
+          "limit": {
+            "context": 1050000,
+            "input": 922000,
+            "output": 128000
+          },
+
+          "options": {
+            "store": false,
+            "promptCacheKey": "opencode-stable-user",
+            "include": ["reasoning.encrypted_content"],
+
+            "textVerbosity": "medium",
+            "reasoningEffort": "high",
+            "reasoningSummary": "auto"
+          },
+
+          "variants": {
+            "xhigh": {
+              "textVerbosity": "medium",
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "auto"
+            },
+            "high": {
+              "textVerbosity": "medium",
+              "reasoningEffort": "high",
+              "reasoningSummary": "auto"
+            },
+            "medium": {
+              "textVerbosity": "medium",
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto"
+            },
+            "low": {
+              "textVerbosity": "medium",
+              "reasoningEffort": "low",
+              "reasoningSummary": "auto"
+            }
+          },
+
+          "headers": {
+            "session_id": "opencode-stable-user",
+            "x-session-id": "opencode-stable-user",
+            "conversation_id": "opencode-stable-user"
+          }
+        },
+
+        "gpt-5.3-codex": {
+          "id": "gpt-5.3-codex",
+          "name": "GPT-5.3 Codex",
+          "family": "gpt-codex",
+          "release_date": "2026-02-05",
+
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "temperature": false,
+
+          "cost": {
+            "input": 0.35,
+            "output": 2.8,
+            "cache_write": 0,
+            "cache_read": 0.035,
+            "context_over_200k": {
+              "input": 0.35,
+              "output": 2.8,
+              "cache_write": 0,
+              "cache_read": 0.035
+            }
+          },
+          "limit": {
+            "context": 400000,
+            "input": 272000,
+            "output": 128000
+          },
+
+          "options": {
+            "store": false,
+            "promptCacheKey": "opencode-stable-user",
+            "include": ["reasoning.encrypted_content"],
+
+            "textVerbosity": "medium",
+            "reasoningEffort": "high",
+            "reasoningSummary": "auto"
+          },
+
+          "variants": {
+            "xhigh": {
+              "textVerbosity": "medium",
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "auto"
+            },
+            "high": {
+              "textVerbosity": "medium",
+              "reasoningEffort": "high",
+              "reasoningSummary": "auto"
+            },
+            "medium": {
+              "textVerbosity": "medium",
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto"
+            },
+            "low": {
+              "textVerbosity": "medium",
+              "reasoningEffort": "low",
+              "reasoningSummary": "auto"
+            }
+          },
+
+          "headers": {
+            "session_id": "opencode-stable-user",
+            "x-session-id": "opencode-stable-user",
+            "conversation_id": "opencode-stable-user"
+          }
+        }
+      }
+    }
+  }
+}

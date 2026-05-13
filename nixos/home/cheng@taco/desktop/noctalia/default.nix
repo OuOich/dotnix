@@ -24,12 +24,19 @@
           center = [
             {
               id = "ActiveWindow";
+
+              colorizeIcons = false;
             }
           ];
 
           right = [
             {
               id = "Tray";
+
+              blacklist = [
+                "Fcitx*"
+                "Rime"
+              ];
             }
 
             {
