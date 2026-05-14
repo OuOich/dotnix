@@ -10,9 +10,9 @@ lib.mkMerge [
     programs.niri = {
       settings = {
         spawn-at-startup = [
-          (lib.mkIf (config.programs ? noctalia-shell) (
-            lib.mkIf config.programs.noctalia-shell.enable { command = [ "noctalia-shell" ]; }
-          ))
+          (lib.mkIf ((options.programs ? noctalia-shell) && config.programs.noctalia-shell.enable) {
+            command = [ "noctalia-shell" ];
+          })
 
           (lib.mkIf config.dotnix.programs.matugen.enable {
             sh = "sleep 5 && matugen image ${config.settings.theme.wallpaper.default}";
@@ -84,15 +84,13 @@ lib.mkMerge [
         };
 
         layer-rules = [
-          (lib.mkIf (config.programs ? noctalia-shell) (
-            lib.mkIf config.programs.noctalia-shell.enable {
-              matches = [
-                { namespace = "^noctalia-overview*"; }
-              ];
+          (lib.mkIf ((options.programs ? noctalia-shell) && config.programs.noctalia-shell.enable) {
+            matches = [
+              { namespace = "^noctalia-overview*"; }
+            ];
 
-              place-within-backdrop = true;
-            }
-          ))
+            place-within-backdrop = true;
+          })
         ];
 
         window-rules = [
@@ -110,11 +108,9 @@ lib.mkMerge [
         ];
 
         binds = lib.mkMerge [
-          (lib.mkIf (config.programs ? noctalia-shell) (
-            lib.mkIf config.programs.noctalia-shell.enable {
-              "Mod+Space".action.spawn-sh = "noctalia-shell ipc call launcher toggle";
-            }
-          ))
+          (lib.mkIf ((options.programs ? noctalia-shell) && config.programs.noctalia-shell.enable) {
+            "Mod+Space".action.spawn-sh = "noctalia-shell ipc call launcher toggle";
+          })
 
           {
             "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
