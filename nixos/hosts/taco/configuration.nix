@@ -8,6 +8,7 @@
     ./impermanence.nix
     ./sops.nix
     ./stylix
+    ./fonts
 
     ./hardware/trackpoint
 

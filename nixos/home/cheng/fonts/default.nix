@@ -42,10 +42,10 @@ lib.mkMerge [
         subpixelRendering = "rgb";
 
         defaultFonts = {
-          sansSerif = [ "Noto Sans CJK SC" ];
-          serif = [ "LXGW WenKai" ];
-          monospace = [ "Maple Mono NF CN" ];
-          emoji = [ "Noto Color Emoji" ];
+          sansSerif = lib.mkBefore [ "Noto Sans CJK SC" ];
+          serif = lib.mkBefore [ "LXGW WenKai" ];
+          monospace = lib.mkBefore [ "Maple Mono NF CN" ];
+          emoji = lib.mkBefore [ "Noto Color Emoji" ];
         };
       };
     };

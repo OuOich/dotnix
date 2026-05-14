@@ -52,6 +52,8 @@
 
     # -------------------------
 
+    ./fonts
+
     ./security/ssh
 
     ./desktop/niri

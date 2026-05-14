@@ -36,10 +36,10 @@ in
         subpixel.rgba = lib.mkDefault "rgb";
 
         defaultFonts = {
-          sansSerif = lib.mkAfter [ "Noto Sans CJK SC" ];
-          serif = lib.mkAfter [ "Source Han Serif SC" ];
-          monospace = lib.mkAfter [ "Maple Mono NF CN" ];
-          emoji = lib.mkAfter [ "Noto Color Emoji" ];
+          sansSerif = [ "Noto Sans CJK SC" ];
+          serif = [ "Noto Serif CJK SC" ];
+          monospace = [ "Maple Mono NF CN" ];
+          emoji = [ "Noto Color Emoji" ];
         };
       };
     };
