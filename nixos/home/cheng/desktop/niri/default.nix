@@ -49,6 +49,8 @@ lib.mkMerge [
         prefer-no-csd = true;
 
         layout = {
+          background-color = "transparent";
+
           empty-workspace-above-first = true;
 
           default-column-width = {
@@ -83,10 +85,15 @@ lib.mkMerge [
           };
         };
 
+        overview = {
+          zoom = 0.5;
+          workspace-shadow.enable = false;
+        };
+
         layer-rules = [
           (lib.mkIf ((options.programs ? noctalia-shell) && config.programs.noctalia-shell.enable) {
             matches = [
-              { namespace = "^noctalia-overview*"; }
+              { namespace = "^noctalia-wallpaper*"; }
             ];
 
             place-within-backdrop = true;

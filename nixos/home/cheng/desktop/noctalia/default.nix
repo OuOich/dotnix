@@ -21,7 +21,7 @@ lib.mkMerge [
         };
 
         wallpaper = {
-          overviewEnabled = true;
+          overviewEnabled = false;
         };
 
         bar = {
