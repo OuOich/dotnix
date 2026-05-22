@@ -35,22 +35,5 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  networking = {
-    defaultGateway = "192.168.2.1";
-
-    interfaces = {
-      wlp3s0 = {
-        ipv4 = {
-          addresses = [
-            {
-              address = "192.168.2.5";
-              prefixLength = 24;
-            }
-          ];
-        };
-      };
-    };
-  };
-
   system.stateVersion = "25.11";
 }
