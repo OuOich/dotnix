@@ -21,6 +21,10 @@ in
       common-sudo-rs.enable = lib.mkDefault true;
     };
 
+    nixpkgs.config = {
+      allowUnfree = lib.mkDefault true;
+    };
+
     boot.loader = {
       efi = {
         canTouchEfiVariables = lib.mkDefault true;
