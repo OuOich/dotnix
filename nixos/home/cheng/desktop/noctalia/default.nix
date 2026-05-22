@@ -28,6 +28,10 @@ lib.mkMerge [
           density = "comfortable";
         };
 
+        dock = {
+          enabled = false;
+        };
+
         location = {
           weatherShowEffects = false;
         };
