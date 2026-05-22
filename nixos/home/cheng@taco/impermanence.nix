@@ -19,10 +19,6 @@
         directory = ".ssh";
         mode = "0700";
       }
-      {
-        directory = ".gnupg";
-        mode = "0700";
-      }
 
       "data"
 
