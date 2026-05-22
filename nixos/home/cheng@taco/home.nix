@@ -45,6 +45,7 @@
     ../cheng/programs/ripgrep
     ../cheng/programs/starship
     ../cheng/programs/tealdeer
+    ../cheng/programs/wakatime
     ../cheng/programs/yazi
     ../cheng/programs/yq
     ../cheng/programs/zen-browser
