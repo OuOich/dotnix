@@ -15,7 +15,7 @@ lib.mkMerge [
           })
 
           (lib.mkIf config.dotnix.programs.matugen.enable {
-            sh = "sleep 5 && matugen image ${config.settings.theme.wallpaper.default}";
+            sh = "sleep 3 && matugen image ${config.settings.theme.wallpaper.default}";
           })
         ];
 
