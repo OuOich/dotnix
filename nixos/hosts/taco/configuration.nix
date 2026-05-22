@@ -6,7 +6,6 @@
     ./users.nix
     ./packages.nix
     ./impermanence.nix
-    ./sops.nix
     ./stylix
     # ./fonts
 

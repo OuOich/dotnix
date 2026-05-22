@@ -15,7 +15,9 @@ in
 
   config = lib.mkIf cfg.enable {
     sops = {
-      defaultSopsFile = self + /secrets/nixos/${config.networking.hostName}/default.yaml;
+      useSystemdActivation = lib.mkDefault true;
+
+      defaultSopsFile = lib.mkDefault (self + /secrets/nixos/${config.networking.hostName}/default.yaml);
 
       age = {
         keyFile = lib.mkDefault "/var/lib/sops-nix/key.txt";

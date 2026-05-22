@@ -15,7 +15,7 @@ in
 
   config = lib.mkIf cfg.enable {
     sops = {
-      defaultSopsFile = self + /secrets/personal/${config.home.username}/default.yaml;
+      defaultSopsFile = lib.mkDefault (self + /secrets/personal/${config.home.username}/default.yaml);
 
       age = {
         keyFile = lib.mkDefault "${config.xdg.configHome}/sops-nix/age-key.txt";
