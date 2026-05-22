@@ -22,15 +22,17 @@ in
     };
 
     boot.loader = {
+      efi = {
+        canTouchEfiVariables = lib.mkDefault true;
+        efiSysMountPoint = lib.mkDefault "/boot";
+      };
+
       grub = {
         enable = lib.mkDefault true;
 
         device = lib.mkDefault "nodev";
         efiSupport = lib.mkDefault true;
-        efiInstallAsRemovable = lib.mkDefault true;
       };
-
-      efi.efiSysMountPoint = lib.mkDefault "/boot";
     };
 
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
