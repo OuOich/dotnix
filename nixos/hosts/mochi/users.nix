@@ -6,6 +6,8 @@
 }:
 
 {
+  users.mutableUsers = false;
+
   users.users = {
     root = {
       hashedPasswordFile = config.sops.secrets.hashed_user_password_root.path;
