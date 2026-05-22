@@ -1,25 +1,24 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 
 {
   programs.niri = {
     settings = {
       spawn-at-startup = [
-        { sh = "${pkgs.gammastep}/bin/gammastep -O 7000"; }
       ];
 
       outputs = {
-        "LVDS-1" = {
+        "eDP-1" = {
           mode = {
-            width = 1366;
-            height = 768;
+            width = 1920;
+            height = 1080;
             refresh = 60.;
           };
-          scale = 1;
+          scale = 1.25;
         };
       };
 
       layout = {
-        gaps = lib.mkForce 10;
+        # gaps = lib.mkForce 10;
       };
     };
   };
