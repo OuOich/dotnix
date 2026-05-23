@@ -81,10 +81,8 @@ in
       curl
       wget
       rsync
-
-      kitty.terminfo
-      wezterm.terminfo
-      alacritty.terminfo
     ];
+
+    environment.enableAllTerminfo = true;
   };
 }
