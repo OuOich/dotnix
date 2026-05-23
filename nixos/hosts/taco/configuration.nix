@@ -16,7 +16,7 @@
     ./services/ssh
     ./services/keyd
 
-    ./desktop/sddm
+    ./desktop/ly
     ./desktop/niri
 
     ./programs/fish
