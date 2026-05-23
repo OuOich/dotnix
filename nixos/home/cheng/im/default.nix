@@ -50,19 +50,21 @@ lib.mkMerge [
               page_size: 9
         '';
 
-        onChange = ''
-          ${pkgs.systemd}/bin/systemd-run --user --collect --quiet ${pkgs.writeShellScript "rime-deploy" ''
-            set -u
+        onChange = /* bash */ ''
+          ${pkgs.systemd}/bin/systemd-run --user --collect --quiet ${
+            pkgs.writeShellScript "rime-deploy" /* bash */ ''
+              set -u
 
-            rimeDataDir="${config.xdg.dataHome}/fcitx5/rime"
+              rimeDataDir="${config.xdg.dataHome}/fcitx5/rime"
 
-            if [ -d "$rimeDataDir" ]; then
-              rm -rf "$rimeDataDir/build"
-              ${pkgs.librime}/bin/rime_deployer --build "$rimeDataDir" "${rimeAddon}/share/rime-data" "$rimeDataDir/build"
-            fi
+              if [ -d "$rimeDataDir" ]; then
+                rm -rf "$rimeDataDir/build"
+                ${pkgs.librime}/bin/rime_deployer --build "$rimeDataDir" "${rimeAddon}/share/rime-data" "$rimeDataDir/build"
+              fi
 
-            ${pkgs.systemd}/bin/systemctl --user try-restart fcitx5-daemon.service || true
-          ''} || true
+              ${pkgs.systemd}/bin/systemctl --user try-restart fcitx5-daemon.service || true
+            ''
+          } || true
         '';
       };
     }

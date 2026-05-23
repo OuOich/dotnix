@@ -162,7 +162,7 @@ in
 
     system.activationScripts.impermanence-persist-files-guard = {
       deps = [ "createPersistentStorageDirs" ];
-      text = ''
+      text = /* bash */ ''
         if ! findmnt ${lib.escapeShellArg cfg.persistenceMountPoint} >/dev/null 2>&1; then
           echo "[impermanence:activation] ${cfg.persistenceMountPoint} is not mounted yet." >&2
           echo "[impermanence:activation] Use boot-only deployment once (deploy --boot), then reboot." >&2
@@ -190,7 +190,7 @@ in
 
       serviceConfig.Type = "oneshot";
 
-      script = /* sh */ ''
+      script = /* bash */ ''
         set -e
 
         imperm_log() {

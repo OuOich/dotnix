@@ -28,7 +28,7 @@ pkgs.mkShell {
     ruff
   ];
 
-  shellHook = ''
+  shellHook = /* bash */ ''
     echo -e "\033[36m# --------------> [ NIX SHELL ] <-------------- #\033[0m"
   '';
 }
