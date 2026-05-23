@@ -58,6 +58,7 @@ in
     };
 
     services.upower.enable = lib.mkDefault true;
+    services.auto-cpufreq.enable = lib.mkDefault true;
 
     services.fail2ban = {
       enable = lib.mkDefault true;
