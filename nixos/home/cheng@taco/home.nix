@@ -43,6 +43,7 @@
     ../cheng/programs/ouch
     ../cheng/programs/procs
     ../cheng/programs/ripgrep
+    ../cheng/programs/spotify
     ../cheng/programs/starship
     ../cheng/programs/tealdeer
     ../cheng/programs/wakatime

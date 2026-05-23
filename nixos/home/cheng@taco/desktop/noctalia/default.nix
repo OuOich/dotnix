@@ -18,6 +18,10 @@
 
             {
               id = "MediaMini";
+
+              showVisualizer = true;
+              visualizerType = "mirrored";
+              showArtistFirst = false;
             }
           ];
 
@@ -33,10 +37,7 @@
             {
               id = "Tray";
 
-              blacklist = [
-                "Fcitx*"
-                "Rime"
-              ];
+              colorizeIcons = false;
             }
 
             {
