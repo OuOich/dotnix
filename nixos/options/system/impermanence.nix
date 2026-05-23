@@ -173,7 +173,7 @@ in
 
     system.activationScripts.persist-files.deps = lib.mkAfter [ "impermanence-persist-files-guard" ];
 
-    boot.initrd.systemd.services.dotnix-impermanence-root-reset = {
+    boot.initrd.systemd.services.impermanence-root-reset = {
       description = "Reset impermanent btrfs root subvolume";
 
       requiredBy = [ "sysroot.mount" ];
