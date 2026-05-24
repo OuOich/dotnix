@@ -14,12 +14,19 @@ lib.mkMerge [
     };
   }
 
-  (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) (
-    {
-      catppuccin.starship.enable = true;
-    }
-    // lib.optionalAttrs (options ? stylix) {
-      stylix.targets.starship.enable = false;
-    }
-  ))
+  (lib.mkIf (options ? stylix) {
+    stylix.targets.starship.enable = lib.mkDefault true;
+  })
+
+  (lib.mkIf
+    (options ? catppuccin && lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme)
+    (
+      {
+        catppuccin.starship.enable = true;
+      }
+      // lib.optionalAttrs (options ? stylix) {
+        stylix.targets.starship.enable = false;
+      }
+    )
+  )
 ]

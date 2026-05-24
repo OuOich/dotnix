@@ -28,11 +28,6 @@ in
 
     base16Scheme = base16Scheme.get config.settings.theme.colorscheme;
 
-    autoEnable = true;
-    targets = {
-      qt.enable = false;
-      gtk.enable = false;
-      nixvim.enable = false;
-    };
+    autoEnable = false;
   };
 }

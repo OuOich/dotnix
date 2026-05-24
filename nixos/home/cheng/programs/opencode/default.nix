@@ -21,4 +21,8 @@ lib.mkMerge [
       ];
     };
   })
+
+  (lib.mkIf (options ? stylix) {
+    stylix.targets.opencode.enable = lib.mkDefault true;
+  })
 ]
