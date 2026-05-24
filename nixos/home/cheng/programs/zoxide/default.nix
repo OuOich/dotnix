@@ -11,7 +11,7 @@ lib.mkMerge [
     };
   }
 
-  (lib.optionalAttrs (options.home ? persistence) {
+  (lib.mkIf (options.home ? persistence) {
     home.persistence."/persist" = {
       directories = [
         ".local/share/zoxide"

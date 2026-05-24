@@ -53,7 +53,7 @@ lib.mkMerge [
     };
   }
 
-  (lib.optionalAttrs (options ? stylix) {
+  (lib.mkIf (options ? stylix) {
     stylix.targets.noctalia-shell.enable = false;
   })
 ]

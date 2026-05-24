@@ -365,7 +365,7 @@ lib.mkMerge [
       '';
   })
 
-  (lib.optionalAttrs (options.home ? persistence) {
+  (lib.mkIf (options.home ? persistence) {
     home.persistence."/persist" = {
       files = [
         ".config/noctalia/colorschemes/Matugen/Matugen.json"
@@ -374,7 +374,7 @@ lib.mkMerge [
     };
   })
 
-  (lib.optionalAttrs (options ? stylix) {
+  (lib.mkIf (options ? stylix) {
     stylix.targets.niri.enable = false;
   })
 ]

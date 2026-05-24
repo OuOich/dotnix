@@ -17,7 +17,7 @@ lib.mkMerge [
     };
   }
 
-  (lib.optionalAttrs (options.home ? persistence) {
+  (lib.mkIf (options.home ? persistence) {
     home.persistence."/persist" = {
       files = [
         ".config/gh/hosts.yml"

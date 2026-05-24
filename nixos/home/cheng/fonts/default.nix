@@ -51,8 +51,7 @@ lib.mkMerge [
     };
   }
 
-  (lib.optionalAttrs (options.programs ? plasma) (
-    lib.mkIf config.programs.plasma.enable {
+  (lib.mkIf ((options.programs ? plasma) && config.programs.plasma.enable) {
       programs.plasma.fonts =
         let
           defaultSansFontFamily = "Noto Sans CJK SC";
@@ -91,7 +90,7 @@ lib.mkMerge [
           };
         };
     }
-  ))
+  )
 
   (lib.mkIf config.programs.kitty.enable {
     programs.kitty = {
