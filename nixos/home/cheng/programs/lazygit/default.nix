@@ -26,6 +26,14 @@ lib.mkMerge [
     };
   }
 
+  (lib.optionalAttrs (options.home ? persistence) {
+    home.persistence."/persist" = {
+      directories = [
+        ".local/state/lazygit"
+      ];
+    };
+  })
+
   (lib.mkIf (lib.strings.hasPrefix "catppuccin-" config.settings.theme.colorscheme) (
     {
       catppuccin.lazygit.enable = true;
