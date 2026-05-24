@@ -19,6 +19,7 @@ in
       basic-fonts.enable = lib.mkDefault true;
       common-nix.enable = lib.mkDefault true;
       common-sudo-rs.enable = lib.mkDefault true;
+      common-pipewire.enable = lib.mkDefault true;
     };
 
     nixpkgs.config = {
