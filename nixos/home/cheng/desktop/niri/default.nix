@@ -14,6 +14,10 @@ lib.mkMerge [
             command = [ "noctalia-shell" ];
           })
 
+          (lib.mkIf (config.i18n.inputMethod.type == "fcitx5") {
+            sh = "systemctl --user restart fcitx5-daemon.service";
+          })
+
           (lib.mkIf config.dotnix.programs.matugen.enable {
             sh = "sleep 3 && matugen image ${config.settings.theme.wallpaper.default}";
           })
