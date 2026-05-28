@@ -25,6 +25,16 @@ lib.mkMerge [
           addons = [ rimeAddon ];
 
           settings = {
+            globalOptions = {
+              Hotkey = {
+                AltTriggerKeys = "";
+              };
+
+              "Hotkey/TriggerKeys" = {
+                "0" = "Shift_R";
+              };
+            };
+
             inputMethod = {
               GroupOrder."0" = "Default";
 
@@ -34,8 +44,8 @@ lib.mkMerge [
                 DefaultIM = "rime";
               };
 
-              # "Groups/0/Items/0".Name = "keyboard-us";
-              "Groups/0/Items/0".Name = "rime";
+              "Groups/0/Items/0".Name = "keyboard-us";
+              "Groups/0/Items/1".Name = "rime";
             };
           };
         };
