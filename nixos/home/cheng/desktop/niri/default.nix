@@ -37,6 +37,10 @@ lib.mkMerge [
           mouse = {
             middle-emulation = true;
           };
+
+          touchpad = {
+            dwtp = true;
+          };
         };
 
         outputs = {
