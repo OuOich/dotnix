@@ -6,9 +6,10 @@
       default = {
         ids = [ "*" ];
         settings = {
-
           main = {
             capslock = "esc";
+
+            rightshift = "rightshift";
           };
         };
       };
