@@ -77,4 +77,8 @@ lib.mkMerge [
       ];
     };
   })
+
+  (lib.mkIf (options ? stylix) {
+    stylix.targets.fcitx5.enable = lib.mkDefault true;
+  })
 ]
