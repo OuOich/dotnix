@@ -23,6 +23,7 @@
       "data"
 
       ".local/state/nix/profiles"
+      ".local/state/wireplumber"
     ];
 
     files = [

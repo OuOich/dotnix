@@ -28,6 +28,7 @@ in
       "/var/lib/systemd"
       "/var/lib/NetworkManager"
       "/var/lib/bluetooth"
+      "/var/lib/alsa"
 
       "/etc/NetworkManager/system-connections"
 

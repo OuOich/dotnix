@@ -10,6 +10,7 @@
     # ./fonts
 
     ./hardware/trackpoint
+    ./hardware/bluetooth
 
     ./security/ssh
 
