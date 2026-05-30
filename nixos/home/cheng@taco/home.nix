@@ -19,6 +19,8 @@
     ../cheng/im
 
     ../cheng/desktop/niri
+    ../cheng/desktop/gtk
+    ../cheng/desktop/qt
     ../cheng/desktop/noctalia
 
     ../cheng/programs/bat

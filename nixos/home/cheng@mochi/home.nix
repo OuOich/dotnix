@@ -19,6 +19,8 @@
     ../cheng/im
 
     ../cheng/desktop/plasma
+    ../cheng/desktop/gtk
+    ../cheng/desktop/qt
     ../cheng/desktop/niri
     ../cheng/desktop/noctalia
 

@@ -13,6 +13,18 @@
       [config]
       prefer = "darkness"
 
+      # (optional: templates.gtk3, templates.gtk4)
+      ${lib.optionalString config.gtk.enable /* toml */ ''
+        [templates.gtk3]
+        input_path = "${./templates/gtk.css}"
+        output_path = "~/.config/gtk-3.0/colors.css"
+
+        [templates.gtk4]
+        input_path = "${./templates/gtk.css}"
+        output_path = "~/.config/gtk-4.0/colors.css"
+      ''}
+      # (optional end)
+
       # (optional: templates.noctalia)
       ${lib.optionalString
         (
