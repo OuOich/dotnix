@@ -49,6 +49,7 @@
     ../cheng/programs/spotify
     ../cheng/programs/starship
     ../cheng/programs/tealdeer
+    ../cheng/programs/telegram
     ../cheng/programs/wakatime
     ../cheng/programs/yazi
     ../cheng/programs/yq
