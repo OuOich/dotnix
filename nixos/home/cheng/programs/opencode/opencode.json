@@ -47,7 +47,7 @@
 
       "options": {
         "setCacheKey": true,
-        "baseURL": "https://right.codes/codex-pro/v1"
+        "baseURL": "https://right.codes/codex/v1"
       },
 
       "models": {
