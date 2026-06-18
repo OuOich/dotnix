@@ -6,18 +6,18 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts/main";
 
-    deploy-rs = {
-      url = "github:serokell/deploy-rs/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     impermanence = {
-      url = "github:nix-community/impermanence";
+      url = "github:nix-community/impermanence/master";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -27,13 +27,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:nix-community/stylix/master";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin = {
-      url = "github:catppuccin/nix/main";
+    stylix = {
+      url = "github:nix-community/stylix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -61,6 +61,11 @@
 
     matugen = {
       url = "github:/InioX/matugen/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    catppuccin = {
+      url = "github:catppuccin/nix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -99,6 +104,7 @@
 
         ./flake/nixos/hosts/mochi.nix
         ./flake/nixos/hosts/taco.nix
+        ./flake/nixos/hosts/vps-rainyun-gofer.nix
 
         ./flake/nixos/deploy.nix
       ];

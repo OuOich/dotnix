@@ -19,5 +19,14 @@
 
       profiles.system.path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.taco;
     };
+
+    vps-rainyun-gofer = {
+      hostname = "vps-rainyun-gofer.moe.cash";
+      sshUser = "root";
+
+      fastConnection = true;
+
+      profiles.system.path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vps-rainyun-gofer;
+    };
   };
 }

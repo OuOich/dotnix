@@ -2,6 +2,7 @@ keys:
   - &nixos_operator__cheng age1v35c8pstlm756dj5dsyu0qf7em8vcj4hsxc7cl26n43cmrzgyfyq0zj66v
   - &nixos_host__mochi age16jf7t96ymkuja7mhrmwpkuqrwwelfmxuxnza0wn7sl0yrsu93anqrzr282
   - &nixos_host__taco age14lcrpxnt4wyswqppf9t4xvqymnacvckkhsq4hw8gwx2ztx64rass7a0nj2
+  - &nixos_host__vps-rainyun-gofer age1mpsgu5eywvyxxu0fsp4v5gfz5yrnusmr6u5rdjguwy6hwwgs4ycsv6dm35
 
 creation_rules:
   # Secrets of user `cheng`
@@ -30,3 +31,9 @@ creation_rules:
       - age:
           - *nixos_operator__cheng
           - *nixos_host__taco
+
+  # Secrets of host `vps-rainyun-gofer`
+  - path_regex: secrets/nixos/vps-rainyun-gofer/[^/]+\.(yaml|json|ini|env)$
+    key_groups:
+      - age:
+          - *nixos_host__vps-rainyun-gofer
