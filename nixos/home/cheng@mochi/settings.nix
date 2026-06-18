@@ -20,7 +20,7 @@
       colorscheme = "catppuccin-mocha";
 
       wallpaper = {
-        default = dotnix.pkgs.wallpapers.items.rotarran-1;
+        default = dotnix.pkgs.wallpapers.items.pixiv-120560744;
       };
     };
   };
