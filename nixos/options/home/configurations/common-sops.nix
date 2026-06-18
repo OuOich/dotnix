@@ -1,6 +1,7 @@
 {
   self,
   config,
+  options,
   lib,
   ...
 }:
@@ -13,17 +14,19 @@ in
     enable = lib.mkEnableOption "Whether to enable the common sops-nix configuration.";
   };
 
-  config = lib.mkIf cfg.enable {
-    sops = {
-      defaultSopsFile = lib.mkDefault (self + /secrets/personal/${config.home.username}/default.yaml);
+  config = lib.mkIf cfg.enable (
+    lib.optionalAttrs (options ? sops) {
+      sops = {
+        defaultSopsFile = lib.mkDefault (self + /secrets/personal/${config.home.username}/default.yaml);
 
-      age = {
-        keyFile = lib.mkDefault "${config.xdg.configHome}/sops-nix/age-key.txt";
-        # sshKeyPaths = lib.mkDefault [
-        #   "${config.home.homeDirectory}/.ssh/id_ed25519"
-        #   "${config.home.homeDirectory}/.ssh/id_rsa"
-        # ];
+        age = {
+          keyFile = lib.mkDefault "${config.xdg.configHome}/sops-nix/age-key.txt";
+          # sshKeyPaths = lib.mkDefault [
+          #   "${config.home.homeDirectory}/.ssh/id_ed25519"
+          #   "${config.home.homeDirectory}/.ssh/id_rsa"
+          # ];
+        };
       };
-    };
-  };
+    }
+  );
 }

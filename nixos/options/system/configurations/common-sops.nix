@@ -1,6 +1,7 @@
 {
   self,
   config,
+  options,
   lib,
   ...
 }:
@@ -13,16 +14,18 @@ in
     enable = lib.mkEnableOption "Whether to enable the common sops-nix configuration.";
   };
 
-  config = lib.mkIf cfg.enable {
-    sops = {
-      useSystemdActivation = lib.mkDefault true;
+  config = lib.mkIf cfg.enable (
+    lib.optionalAttrs (options ? sops) {
+      sops = {
+        useSystemdActivation = lib.mkDefault true;
 
-      defaultSopsFile = lib.mkDefault (self + /secrets/nixos/${config.networking.hostName}/default.yaml);
+        defaultSopsFile = lib.mkDefault (self + /secrets/nixos/${config.networking.hostName}/default.yaml);
 
-      age = {
-        keyFile = lib.mkDefault "/var/lib/sops-nix/key.txt";
-        sshKeyPaths = lib.mkDefault [ "/etc/ssh/ssh_host_ed25519_key" ];
+        age = {
+          keyFile = lib.mkDefault "/var/lib/sops-nix/key.txt";
+          sshKeyPaths = lib.mkDefault [ "/etc/ssh/ssh_host_ed25519_key" ];
+        };
       };
-    };
-  };
+    }
+  );
 }

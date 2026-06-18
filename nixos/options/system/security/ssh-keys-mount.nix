@@ -2,12 +2,15 @@
   self,
   dotnix,
   config,
+  options,
   lib,
   ...
 }:
 
 let
   cfg = config.dotnix.security.sshKeysMount;
+
+  sshdRestartUnits = lib.optional config.services.openssh.enable config.systemd.services.sshd.name;
 
   mkSopsEntry =
     {
@@ -34,7 +37,6 @@ let
           ;
       };
     };
-
 in
 {
   options.dotnix.security.sshKeysMount = {
@@ -49,11 +51,11 @@ in
     hostKeys = {
       ed25519 = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
       };
       rsa = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
       };
     };
 
@@ -103,116 +105,118 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    sops.secrets =
-      (lib.optionalAttrs cfg.hostKeys.ed25519 (
-        (mkSopsEntry {
-          secretName = "ssh_host_ed25519_key";
-          secretFile = cfg.hostSecretFile;
-          secretKey = "ssh_host_ed25519_key/private";
-
-          path = "/etc/ssh/ssh_host_ed25519_key";
-
-          owner = config.users.users.root.name;
-          mode = "0600";
-
-          restartUnits = [ config.systemd.services.sshd.name ];
-        })
-
-        // (mkSopsEntry {
-          secretName = "ssh_host_ed25519_key.pub";
-          secretFile = cfg.hostSecretFile;
-          secretKey = "ssh_host_ed25519_key/public";
-
-          path = "/etc/ssh/ssh_host_ed25519_key.pub";
-
-          owner = config.users.users.root.name;
-          mode = "0644";
-
-          restartUnits = [ config.systemd.services.sshd.name ];
-        })
-      ))
-
-      // (lib.optionalAttrs cfg.hostKeys.rsa (
-        (mkSopsEntry {
-          secretName = "ssh_host_rsa_key";
-          secretFile = cfg.hostSecretFile;
-          secretKey = "ssh_host_rsa_key/private";
-
-          path = "/etc/ssh/ssh_host_rsa_key";
-
-          owner = config.users.users.root.name;
-          mode = "0600";
-
-          restartUnits = [ config.systemd.services.sshd.name ];
-        })
-
-        // (mkSopsEntry {
-          secretName = "ssh_host_rsa_key.pub";
-          secretFile = cfg.hostSecretFile;
-          secretKey = "ssh_host_rsa_key/public";
-
-          path = "/etc/ssh/ssh_host_rsa_key.pub";
-
-          owner = config.users.users.root.name;
-          mode = "0644";
-
-          restartUnits = [ config.systemd.services.sshd.name ];
-        })
-      ))
-
-      // (lib.concatMapAttrs (
-        name: value:
-        let
-          home = config.users.users.${value.userName}.home;
-        in
-        (lib.optionalAttrs value.ed25519 (
+  config = lib.mkIf cfg.enable (
+    lib.optionalAttrs (options ? sops) {
+      sops.secrets =
+        (lib.optionalAttrs cfg.hostKeys.ed25519 (
           (mkSopsEntry {
-            secretName = "ssh_id_ed25519_key_${name}";
-            secretFile = value.secretFile;
-            secretKey = "${value.ed25519SecretKey}/private";
+            secretName = "ssh_host_ed25519_key";
+            secretFile = cfg.hostSecretFile;
+            secretKey = "ssh_host_ed25519_key/private";
 
-            path = "${home}/.ssh/id_ed25519";
+            path = "/etc/ssh/ssh_host_ed25519_key";
 
-            owner = value.userName;
+            owner = config.users.users.root.name;
             mode = "0600";
+
+            restartUnits = sshdRestartUnits;
           })
 
           // (mkSopsEntry {
-            secretName = "ssh_id_ed25519_key_${name}.pub";
-            secretFile = value.secretFile;
-            secretKey = "${value.ed25519SecretKey}/public";
+            secretName = "ssh_host_ed25519_key.pub";
+            secretFile = cfg.hostSecretFile;
+            secretKey = "ssh_host_ed25519_key/public";
 
-            path = "${home}/.ssh/id_ed25519.pub";
+            path = "/etc/ssh/ssh_host_ed25519_key.pub";
 
-            owner = value.userName;
+            owner = config.users.users.root.name;
             mode = "0644";
+
+            restartUnits = sshdRestartUnits;
           })
         ))
 
-        // (lib.optionalAttrs value.rsa (
+        // (lib.optionalAttrs cfg.hostKeys.rsa (
           (mkSopsEntry {
-            secretName = "ssh_id_rsa_key_${name}";
-            secretFile = value.secretFile;
-            secretKey = "${value.rsaSecretKey}/private";
+            secretName = "ssh_host_rsa_key";
+            secretFile = cfg.hostSecretFile;
+            secretKey = "ssh_host_rsa_key/private";
 
-            path = "${home}/.ssh/id_rsa";
+            path = "/etc/ssh/ssh_host_rsa_key";
 
-            owner = value.userName;
+            owner = config.users.users.root.name;
             mode = "0600";
+
+            restartUnits = sshdRestartUnits;
           })
 
           // (mkSopsEntry {
-            secretName = "ssh_id_rsa_key_${name}.pub";
-            secretFile = value.secretFile;
-            secretKey = "${value.rsaSecretKey}/public";
+            secretName = "ssh_host_rsa_key.pub";
+            secretFile = cfg.hostSecretFile;
+            secretKey = "ssh_host_rsa_key/public";
 
-            path = "${home}/.ssh/id_rsa.pub";
+            path = "/etc/ssh/ssh_host_rsa_key.pub";
 
-            owner = value.userName;
+            owner = config.users.users.root.name;
             mode = "0644";
+
+            restartUnits = sshdRestartUnits;
           })
         ))
-      ) cfg.identityKeys);
-  };
+
+        // (lib.concatMapAttrs (
+          name: value:
+          let
+            home = config.users.users.${value.userName}.home;
+          in
+          (lib.optionalAttrs value.ed25519 (
+            (mkSopsEntry {
+              secretName = "ssh_id_ed25519_key_${name}";
+              secretFile = value.secretFile;
+              secretKey = "${value.ed25519SecretKey}/private";
+
+              path = "${home}/.ssh/id_ed25519";
+
+              owner = value.userName;
+              mode = "0600";
+            })
+
+            // (mkSopsEntry {
+              secretName = "ssh_id_ed25519_key_${name}.pub";
+              secretFile = value.secretFile;
+              secretKey = "${value.ed25519SecretKey}/public";
+
+              path = "${home}/.ssh/id_ed25519.pub";
+
+              owner = value.userName;
+              mode = "0644";
+            })
+          ))
+
+          // (lib.optionalAttrs value.rsa (
+            (mkSopsEntry {
+              secretName = "ssh_id_rsa_key_${name}";
+              secretFile = value.secretFile;
+              secretKey = "${value.rsaSecretKey}/private";
+
+              path = "${home}/.ssh/id_rsa";
+
+              owner = value.userName;
+              mode = "0600";
+            })
+
+            // (mkSopsEntry {
+              secretName = "ssh_id_rsa_key_${name}.pub";
+              secretFile = value.secretFile;
+              secretKey = "${value.rsaSecretKey}/public";
+
+              path = "${home}/.ssh/id_rsa.pub";
+
+              owner = value.userName;
+              mode = "0644";
+            })
+          ))
+        ) cfg.identityKeys);
+    }
+  );
 }
