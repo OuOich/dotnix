@@ -41,6 +41,19 @@
   },
 
   "provider": {
+    "openrouter": {
+      "models": {
+        "deepseek/deepseek-v4-flash": {
+          "options": {
+            "provider": {
+              "order": ["baidu/fp8", "alibaba"],
+              "allow_fallbacks": true
+            }
+          }
+        }
+      }
+    },
+
     "rightcode_openai": {
       "npm": "@ai-sdk/openai",
       "name": "RC·OpenAI",
