@@ -15,11 +15,11 @@ pkgs.mkShell {
     statix
     nixfmt
     prettier
+    mcp-nixos
 
     just
 
     sops
-
     maybeInputPkgs.deploy-rs
 
     python315
