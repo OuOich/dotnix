@@ -1,11 +1,23 @@
 { self, inputs, ... }:
 
 let
-  inherit (self.legacyPackages.x86_64-linux) dotnix;
+  system = "x86_64-linux";
+
+  inherit (self.legacyPackages.${system}) dotnix;
+
+  pkgs-weekly = import inputs.nixpkgs-weekly {
+    inherit system;
+    config.allowUnfree = true;
+  };
 in
 inputs.nixpkgs.lib.nixosSystem rec {
   specialArgs = {
-    inherit self inputs dotnix;
+    inherit
+      self
+      inputs
+      dotnix
+      pkgs-weekly
+      ;
   };
 
   modules = [

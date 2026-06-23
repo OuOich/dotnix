@@ -1,5 +1,6 @@
 {
   options,
+  pkgs-weekly,
   lib,
   ...
 }:
@@ -8,6 +9,7 @@ lib.mkMerge [
   {
     programs.opencode = {
       enable = true;
+      package = pkgs-weekly.opencode;
 
       settings = lib.importJSON ./opencode.json;
       tui = lib.importJSON ./tui.json;
