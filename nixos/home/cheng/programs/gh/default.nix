@@ -6,12 +6,13 @@
 }:
 
 lib.mkMerge [
-
   {
     programs.gh = {
       enable = true;
 
       settings = {
+        git_protocol = "ssh";
+
         editor = config.home.sessionVariables.EDITOR or "nano";
       };
     };
