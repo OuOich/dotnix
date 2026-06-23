@@ -14,6 +14,8 @@ inputs.nixpkgs.lib.nixosSystem {
 
     inputs.disko.nixosModules.default
     inputs.sops-nix.nixosModules.default
+    inputs.quadlet-nix.nixosModules.quadlet
+    inputs.hermes-agent.nixosModules.default
 
     ./configuration.nix
   ];

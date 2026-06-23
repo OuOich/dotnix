@@ -6,16 +6,20 @@
     ./users.nix
     ./network.nix
 
+    ./virtualisation/podman
+
     ./security/ssh
 
     ./services/ssh
+    ./services/hermes
+
+    ./containerized/searxng
   ];
 
+  dotnix.templates.general-server.enable = true;
+
   dotnix.configurations = {
-    common-nix = {
-      enable = true;
-      trustUsersInTrustedGroup = false;
-    };
+    trusted-group.enable = true;
     common-sops.enable = true;
   };
 

@@ -10,8 +10,6 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  boot.loader.grub.enable = lib.mkDefault true;
-
   disko.devices = {
     disk = {
       main = {

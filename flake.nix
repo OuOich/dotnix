@@ -32,6 +32,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    quadlet-nix = {
+      url = "github:SEIAROTg/quadlet-nix/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,7 +74,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dotnvim.url = "github:OuOich/dotnvim/master";
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dotnvim = {
+      url = "github:OuOich/dotnvim/master";
+    };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake/main";

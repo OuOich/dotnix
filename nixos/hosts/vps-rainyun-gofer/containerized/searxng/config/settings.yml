@@ -1,0 +1,13 @@
+use_default_settings: true
+
+server:
+  image_proxy: true
+
+ui:
+  query_in_title: true
+  hotkeys: vim
+
+search:
+  formats:
+    - html
+    - json
