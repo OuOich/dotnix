@@ -25,6 +25,7 @@
 
     ../cheng/programs/bat
     ../cheng/programs/dasel
+    ../cheng/programs/devenv
     ../cheng/programs/direnv
     ../cheng/programs/dotnvim
     ../cheng/programs/duf
