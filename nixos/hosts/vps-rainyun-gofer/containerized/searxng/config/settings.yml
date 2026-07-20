@@ -8,6 +8,14 @@ ui:
   hotkeys: vim
 
 search:
+  favicon_resolver: duckduckgo
   formats:
     - html
     - json
+
+engines:
+  - name: bing
+    disabled: false
+
+  - name: yahoo
+    disabled: false
