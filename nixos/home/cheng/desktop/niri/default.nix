@@ -1,12 +1,17 @@
 {
   config,
   options,
+  pkgs,
   lib,
   ...
 }:
 
 lib.mkMerge [
   {
+    home.packages = with pkgs; [
+      wl-clipboard
+    ];
+
     programs.niri = {
       settings = {
         spawn-at-startup = [
@@ -16,6 +21,10 @@ lib.mkMerge [
 
           (lib.mkIf (config.i18n.inputMethod.type == "fcitx5") {
             sh = "systemctl --user restart fcitx5-daemon.service";
+          })
+
+          (lib.mkIf config.dotnix.programs.copyq.enable {
+            command = [ "copyq" ];
           })
 
           (lib.mkIf config.dotnix.programs.matugen.enable {
@@ -120,11 +129,42 @@ lib.mkMerge [
               bottom-left = 12.;
             };
           }
+
+          {
+            matches = [
+              {
+                app-id = "^com.github.hluk.copyq$";
+                is-floating = false;
+              }
+            ];
+
+            open-floating = true;
+
+            default-column-width.fixed = 370;
+            default-window-height.fixed = 450;
+
+            default-floating-position = {
+              relative-to = "bottom-right";
+              x = 30;
+              y = 30;
+            };
+
+            geometry-corner-radius = {
+              top-left = 10.;
+              top-right = 10.;
+              bottom-right = 10.;
+              bottom-left = 10.;
+            };
+          }
         ];
 
         binds = lib.mkMerge [
           (lib.mkIf ((options.programs ? noctalia-shell) && config.programs.noctalia-shell.enable) {
             "Mod+Space".action.spawn-sh = "noctalia-shell ipc call launcher toggle";
+          })
+
+          (lib.mkIf config.dotnix.programs.copyq.enable {
+            "Mod+P".action.spawn-sh = "copyq toggle";
           })
 
           {

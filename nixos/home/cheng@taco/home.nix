@@ -24,6 +24,7 @@
     ../cheng/desktop/noctalia
 
     ../cheng/programs/bat
+    ../cheng/programs/copyq
     ../cheng/programs/dasel
     ../cheng/programs/devenv
     ../cheng/programs/direnv
