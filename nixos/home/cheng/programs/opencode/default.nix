@@ -1,5 +1,6 @@
 {
   options,
+  pkgs,
   pkgs-weekly,
   lib,
   ...
@@ -11,7 +12,13 @@ lib.mkMerge [
       enable = true;
       package = pkgs-weekly.opencode;
 
-      settings = lib.importJSON ./opencode.json;
+      settings = lib.mkMerge [
+        (lib.importJSON ./opencode.json)
+        {
+          mcp.nix.command = [ "${pkgs.mcp-nixos}/bin/mcp-nixos" ];
+        }
+      ];
+
       tui = lib.importJSON ./tui.json;
     };
   }
