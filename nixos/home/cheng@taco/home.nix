@@ -5,23 +5,19 @@
   home.homeDirectory = osConfig.users.users.cheng.home;
 
   imports = [
-    ./impermanence.nix
-
-    ./settings.nix
-
-    # -------------------------
+    ../cheng/base
 
     ../cheng/defaults.nix
     ../cheng/fonts
     ../cheng/stylix
     ../cheng/catppuccin.nix
     ../cheng/wallpapers.nix
-    ../cheng/im
 
     ../cheng/desktop/niri
     ../cheng/desktop/gtk
     ../cheng/desktop/qt
     ../cheng/desktop/noctalia
+    ../cheng/desktop/im
 
     ../cheng/programs/bat
     ../cheng/programs/copyq
@@ -59,7 +55,9 @@
 
     # -------------------------
 
-    # ./fonts
+    ./settings.nix
+
+    ./impermanence.nix
 
     ./security/ssh
 
