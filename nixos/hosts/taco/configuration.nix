@@ -14,6 +14,7 @@
 
     ./security/ssh
 
+    ./services/auto-cpufreq
     ./services/ssh
     ./services/keyd
     ./services/udisks2
