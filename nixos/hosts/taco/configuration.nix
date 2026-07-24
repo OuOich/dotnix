@@ -16,6 +16,7 @@
 
     ./services/ssh
     ./services/keyd
+    ./services/udisks2
 
     ./desktop/ly
     ./desktop/niri
