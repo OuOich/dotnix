@@ -13,6 +13,8 @@
     ../cheng/catppuccin.nix
     ../cheng/wallpapers.nix
 
+    ../cheng/services/udiskie
+
     ../cheng/desktop/niri
     ../cheng/desktop/gtk
     ../cheng/desktop/qt
