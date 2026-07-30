@@ -56,7 +56,7 @@ pkgs.stdenv.mkDerivation (
     };
 
     meta = {
-      description = "Wallpaper collection for Cheng's NixOS configuration";
+      description = "Wallpaper collection";
       license = pkgs.lib.licenses.cc0;
     };
   }

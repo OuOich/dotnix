@@ -24,7 +24,7 @@
     container = {
       enable = false;
       # image = "ubuntu:24.04";
-      # hostUsers = [ "cheng" ];
+      # hostUsers = [ "suu" ];
     };
 
     settings = {

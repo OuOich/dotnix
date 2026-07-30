@@ -4,8 +4,8 @@
 
     settings = {
       user = {
-        name = "Cheng";
-        email = "chengcheng@miao.ms";
+        name = "Xin Su";
+        email = "suu@miao.ms";
       };
 
       init = {

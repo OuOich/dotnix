@@ -17,6 +17,8 @@ lib.mkMerge [
 
         gui = {
           authorColors = {
+            "Xin Su" = "magenta";
+            "Suu" = "magenta";
             "Cheng" = "magenta";
             "Cheng :3" = "magenta";
             "成成0v0" = "magenta";

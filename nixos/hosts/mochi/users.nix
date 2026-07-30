@@ -13,26 +13,26 @@
       hashedPasswordFile = config.sops.secrets.hashed_user_password_root.path;
 
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBCfZ2IPPTxJz+hBod0mwsLfIBlBgeam87+LPQqN/DfD cheng@mochi"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBCfZ2IPPTxJz+hBod0mwsLfIBlBgeam87+LPQqN/DfD suu@mochi"
       ];
     };
 
-    cheng = {
+    suu = {
       isNormalUser = true;
-      description = "OuOi. Cheng";
+      description = "Xin Su";
 
       extraGroups = with config.users.groups; [
         wheel.name
         trusted.name
       ];
 
-      hashedPasswordFile = config.sops.secrets.hashed_user_password_cheng.path;
+      hashedPasswordFile = config.sops.secrets.hashed_user_password_suu.path;
 
       shell = pkgs.fish;
 
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBCfZ2IPPTxJz+hBod0mwsLfIBlBgeam87+LPQqN/DfD cheng@mochi"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDK2uKnIK1KU3FSnHKplbTxxxqOOGdJg3/pqGow1CUUO cheng@taco"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBCfZ2IPPTxJz+hBod0mwsLfIBlBgeam87+LPQqN/DfD suu@mochi"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDK2uKnIK1KU3FSnHKplbTxxxqOOGdJg3/pqGow1CUUO suu@taco"
       ];
     };
   };
@@ -42,7 +42,7 @@
       byUserHost = id: self + "/nixos/home/${id}/home.nix";
     in
     {
-      cheng = byUserHost "cheng@mochi";
+      suu = byUserHost "suu@mochi";
     };
 
   sops.secrets = {
@@ -51,8 +51,8 @@
       neededForUsers = true;
     };
 
-    hashed_user_password_cheng = {
-      key = "hashed_user_passwords/cheng";
+    hashed_user_password_suu = {
+      key = "hashed_user_passwords/suu";
       neededForUsers = true;
     };
   };
