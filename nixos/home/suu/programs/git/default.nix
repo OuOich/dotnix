@@ -24,7 +24,7 @@
 
     signing = {
       format = "openpgp";
-      key = "6BE182A0DE04D4E9A64244EE9D370BF9A2837224";
+      key = "18D6A9F0636C87CEE363E647D220DCA09C867D9A";
     };
   };
 }
