@@ -49,6 +49,7 @@
     ../suu/programs/starship
     ../suu/programs/tealdeer
     ../suu/programs/telegram
+    ../suu/programs/veracrypt
     ../suu/programs/wakatime
     ../suu/programs/yazi
     ../suu/programs/yq
