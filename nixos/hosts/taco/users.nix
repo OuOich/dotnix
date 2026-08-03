@@ -13,8 +13,8 @@
       hashedPasswordFile = config.sops.secrets.hashed_user_password_root.path;
 
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDK2uKnIK1KU3FSnHKplbTxxxqOOGdJg3/pqGow1CUUO suu@taco"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBCfZ2IPPTxJz+hBod0mwsLfIBlBgeam87+LPQqN/DfD suu@mochi"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7KXjvl2CYXIwSSwWuKdEATVKuUTamUGrHCqdaqsDuy suu@taco"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1VYnTNTHyO/UFEDulmINIKe8UOy0pFFHWGXbe9w479 suu@mochi"
       ];
     };
 
@@ -32,8 +32,8 @@
       shell = pkgs.fish;
 
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDK2uKnIK1KU3FSnHKplbTxxxqOOGdJg3/pqGow1CUUO suu@taco"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBCfZ2IPPTxJz+hBod0mwsLfIBlBgeam87+LPQqN/DfD suu@mochi"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7KXjvl2CYXIwSSwWuKdEATVKuUTamUGrHCqdaqsDuy suu@taco"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1VYnTNTHyO/UFEDulmINIKe8UOy0pFFHWGXbe9w479 suu@mochi"
       ];
     };
   };
