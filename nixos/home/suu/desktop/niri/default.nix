@@ -19,7 +19,7 @@ lib.mkMerge [
             command = [ "noctalia-shell" ];
           })
 
-          (lib.mkIf (config.i18n.inputMethod.type == "fcitx5") {
+          (lib.mkIf config.services.udiskie.enable {
             sh = "systemctl --user restart udiskie.service";
           })
 
