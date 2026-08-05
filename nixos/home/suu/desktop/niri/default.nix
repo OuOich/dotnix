@@ -20,6 +20,10 @@ lib.mkMerge [
           })
 
           (lib.mkIf (config.i18n.inputMethod.type == "fcitx5") {
+            sh = "systemctl --user restart udiskie.service";
+          })
+
+          (lib.mkIf (config.i18n.inputMethod.type == "fcitx5") {
             sh = "systemctl --user restart fcitx5-daemon.service";
           })
 
