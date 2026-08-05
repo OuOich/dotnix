@@ -30,6 +30,7 @@
 
   dotnix.configurations = {
     common-sops.enable = true;
+    common-docker.enable = true;
     desktop-comps.enable = true;
   };
 
