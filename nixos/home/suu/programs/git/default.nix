@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   programs.git = {
     enable = true;
@@ -24,7 +26,7 @@
 
     signing = {
       format = "openpgp";
-      key = "18D6A9F0636C87CEE363E647D220DCA09C867D9A";
+      key = config.programs.gpg.settings.default-key;
     };
   };
 }

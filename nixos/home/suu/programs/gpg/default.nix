@@ -8,6 +8,10 @@ lib.mkMerge [
   {
     programs.gpg = {
       enable = true;
+
+      settings = {
+        default-key = "18D6A9F0636C87CEE363E647D220DCA09C867D9A";
+      };
     };
   }
 
