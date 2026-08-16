@@ -3,6 +3,8 @@
 
   "autoupdate": false,
 
+  "formatter": true,
+
   "mcp": {
     "context7": {
       "enabled": true,
