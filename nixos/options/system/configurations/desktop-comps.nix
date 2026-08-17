@@ -19,8 +19,6 @@ in
     xdg.sounds.enable = lib.mkDefault true;
     xdg.terminal-exec.enable = lib.mkDefault true;
 
-    xdg.portal.config.common.default = "*";
-
     programs.dconf.enable = lib.mkDefault true;
   };
 }
