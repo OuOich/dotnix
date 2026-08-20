@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.dotnix.configurations.desktop-comps;
@@ -12,6 +17,7 @@ in
     xdg.portal.enable = lib.mkDefault true;
     xdg.portal.wlr.enable = lib.mkDefault true;
     xdg.portal.lxqt.enable = lib.mkDefault true;
+    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     xdg.mime.enable = lib.mkDefault true;
     xdg.menus.enable = lib.mkDefault true;
     xdg.icons.enable = lib.mkDefault true;
